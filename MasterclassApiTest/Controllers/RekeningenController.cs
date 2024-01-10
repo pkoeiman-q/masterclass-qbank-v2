@@ -76,14 +76,39 @@ namespace MasterclassApiTest.Controllers
 
         // PUT api/<RekeningController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(string id, [FromBody] Rekening rekening)
         {
+            // TODO: implement
+            return Ok("TODO: de gegeven rekening aanpassen");
         }
 
         // DELETE api/<RekeningController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            // TODO: implement
+            return Ok("TODO: de gegeven rekening deleten");
+        }
+
+        [HttpGet]
+        [Route("{rekeningId}/overboekingen")]
+        public IActionResult Overboekingen(string rekeningId)
+        {
+            return Ok("TODO: toon overboekingen van de gegeven rekening");
+        }
+
+        [HttpGet]
+        [Route("{rekeningId}/overboekingen/{overboekingId}")]
+        public IActionResult Overboekingen(string rekeningId, int overboekingId)
+        {
+            return Ok("TODO: toon 1 overboeking van de gegeven rekening");
+        }
+
+        [HttpPost]
+        [Route("{rekeningId}/overboekingen")]
+        public IActionResult Overboekingen(string rekeningId, [FromBody] Overboeking overboeking)
+        {
+            return Ok("TODO: maak overboeking aan voor de gegeven rekening");
         }
     }
 }

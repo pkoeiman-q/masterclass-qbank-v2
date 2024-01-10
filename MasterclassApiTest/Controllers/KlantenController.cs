@@ -1,4 +1,4 @@
-﻿using MasterclassApiTest.Models;
+using MasterclassApiTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System;
@@ -123,18 +123,26 @@ namespace MasterclassApiTest.Controllers
 
         [HttpGet]
         [Route("{id}/rekeningen")]
-        public IActionResult KlantRekeningen(int id)
+        public IActionResult Rekeningen(int id)
         {
             // TODO: implement
-            return Ok();
+            return Ok("TODO: laat alle rekeningen van de gegeven klant zien.");
         }
 
         [HttpGet]
         [Route("{klantId}/rekeningen/{rekeningId}")]
-        public IActionResult KlantRekening(int klantId, int rekeningId)
+        public IActionResult Rekeningen(int klantId, string rekeningId)
         {
             // TODO: implement
-            return Ok();
+            return Ok("TODO: laat 1 rekening van de gegeven klant zien.");
+        }
+
+        [HttpPost]
+        [Route("{id}/rekeningen")]
+        public IActionResult CreateRekening(string id)
+        {
+            // TODO: implement
+            return Ok("TODO: maak een nieuwe rekening voor de gegeven klant aan.");
         }
     }
 }
