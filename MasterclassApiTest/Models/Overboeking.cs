@@ -2,10 +2,10 @@
 {
     public class Overboeking
     {
-        public int volgNummer { get; set; }
-        public DateTime boekDatum { get; set; }
-        public int bedrag { get; set; }
-        public Rekening vanRekening { get; set; }
-        public Rekening tegenRekening { get; set; }
+        public int VolgNummer { get; set; }
+        public DateTime BoekDatum { get; set; }
+        public int Bedrag { get; set; }
+        public Rekening VanRekening { get; set; }
+        public Rekening TegenRekening { get; set; }
     }
 }

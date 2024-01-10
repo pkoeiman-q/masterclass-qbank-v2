@@ -16,7 +16,7 @@ namespace MasterclassApiTest.Controllers
             var index = 0;
             foreach (var rekening in rekeningen)
             {
-                if (rekening.rekeningNummer == id)
+                if (rekening.RekeningNummer == id)
                 {
                     return index;
                 }
@@ -30,11 +30,11 @@ namespace MasterclassApiTest.Controllers
         {
             Rekening newRekening = new Rekening
             {
-                rekeningNummer = rekening.rekeningNummer,
-                type = rekening.type,
-                saldo = rekening.saldo,
-                status = rekening.status,
-                beginDatum = rekening.beginDatum
+                RekeningNummer = rekening.RekeningNummer,
+                Type = rekening.Type,
+                Saldo = rekening.Saldo,
+                Status = rekening.Status,
+                BeginDatum = rekening.BeginDatum
             };
             rekeningen.Add(newRekening);
             return newRekening;

@@ -1,23 +1,27 @@
-﻿namespace MasterclassApiTest.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MasterclassApiTest.Models
 {
     public class Klant
     {
-        public int klantNummer { get; set; }
-        public string loginNaam { get; set; }
-        public DateTime laatstIngelogd { get; set; }
-        public string displayNaam { get; set; }
-        public string voorletters { get; set; }
-        public string achternaam { get; set; }
-        public string geslacht { get; set; }
-        public DateTime geboorteDatum { get; set; }
-        public DateTime overlijdensDatum { get; set; }
-        public string straat { get; set; }
-        public int huisnummer { get; set; }
-        public string huisnummerToevoeging { get; set; }
-        public string postcode { get; set; }
-        public string woonplaats { get; set; }
-        public int bsn { get; set; }
-        public string telefoonNummer { get; set; }
-        public string email { get; set; }
+        [Required]
+        public int KlantNummer { get; set; }
+        [StringLength(3)]
+        public string LoginNaam { get; set; }
+        public DateTime LaatstIngelogd { get; set; }
+        public string DisplayNaam { get; set; }
+        public string Voorletters { get; set; }
+        public string Achternaam { get; set; }
+        public string Geslacht { get; set; }
+        public DateTime GeboorteDatum { get; set; }
+        public DateTime OverlijdensDatum { get; set; }
+        public string Straat { get; set; }
+        public int Huisnummer { get; set; }
+        public string HuisnummerToevoeging { get; set; }
+        public string Postcode { get; set; }
+        public string Woonplaats { get; set; }
+        public int Bsn { get; set; }
+        public string TelefoonNummer { get; set; }
+        public string Email { get; set; }
     }
 }

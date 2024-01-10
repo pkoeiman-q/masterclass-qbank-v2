@@ -1,8 +1,9 @@
-using MasterclassApiTest.Models;
+﻿using MasterclassApiTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System;
 using System.Numerics;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +18,7 @@ namespace MasterclassApiTest.Controllers
         {
             foreach (var klant in klanten)
             {
-                if (klant.klantNummer == id)
+                if (klant.KlantNummer == id)
                 {
                     return true;
                 }
@@ -29,23 +30,23 @@ namespace MasterclassApiTest.Controllers
         {
             Klant newKlant = new Klant
             {
-                klantNummer = klanten.Count(),
-                loginNaam = klant.loginNaam,
-                laatstIngelogd = klant.laatstIngelogd,
-                displayNaam = klant.displayNaam,
-                voorletters = klant.voorletters,
-                achternaam = klant.achternaam,
-                geslacht = klant.geslacht,
-                geboorteDatum = klant.geboorteDatum,
-                overlijdensDatum = klant.overlijdensDatum,
-                straat = klant.straat,
-                huisnummer = klant.huisnummer,
-                huisnummerToevoeging = klant.huisnummerToevoeging,
-                postcode = klant.postcode,
-                woonplaats = klant.woonplaats,
-                bsn = klant.bsn,
-                telefoonNummer = klant.telefoonNummer,
-                email = klant.email,
+                KlantNummer = klanten.Count(),
+                LoginNaam = klant.LoginNaam,
+                LaatstIngelogd = klant.LaatstIngelogd,
+                DisplayNaam = klant.DisplayNaam,
+                Voorletters = klant.Voorletters,
+                Achternaam = klant.Achternaam,
+                Geslacht = klant.Geslacht,
+                GeboorteDatum = klant.GeboorteDatum,
+                OverlijdensDatum = klant.OverlijdensDatum,
+                Straat = klant.Straat,
+                Huisnummer = klant.Huisnummer,
+                HuisnummerToevoeging = klant.HuisnummerToevoeging,
+                Postcode = klant.Postcode,
+                Woonplaats = klant.Woonplaats,
+                Bsn = klant.Bsn,
+                TelefoonNummer = klant.TelefoonNummer,
+                Email = klant.Email,
             };
             klanten.Add(newKlant);
             return newKlant;
@@ -78,9 +79,10 @@ namespace MasterclassApiTest.Controllers
 
         // POST api/<KlantenController>
         [HttpPost]
+        [ProducesResponseType(typeof(Klant), 200)]
         public IActionResult Post([FromBody] Klant klant)
         {
-            if (klant == null)
+            if (klant == null || !ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
