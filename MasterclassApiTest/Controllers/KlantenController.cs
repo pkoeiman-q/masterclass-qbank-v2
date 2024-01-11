@@ -82,12 +82,7 @@ namespace MasterclassApiTest.Controllers
         [ProducesResponseType(typeof(Klant), 200)]
         public IActionResult Post([FromBody] Klant klant)
         {
-            if (klant == null || !ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             Klant newKlant = CreateNewKlant(klant);
-            
             return Ok(newKlant);
         }
 
@@ -95,17 +90,13 @@ namespace MasterclassApiTest.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Klant klant)
         {
-            if (klant == null || !KlantIdExists(id))
+            if (!KlantIdExists(id))
             {
-                return BadRequest(ModelState);
+                return BadRequest("Geprobeerd een klant aan te passen, maar deze was niet gevonden.");
             }
-            var existingKlant = klanten[id] as Klant;
+            klanten[id] = klant;
 
-            // Verwijder de oude klant en voeg de bijgewerkte versie toe
-            klanten.Remove(existingKlant);
-            Klant newKlant = CreateNewKlant(klant);
-
-            return Ok(newKlant);
+            return Ok(klanten[id]);
         }
 
         // DELETE api/<KlantenController>/5
