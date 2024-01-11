@@ -50,31 +50,47 @@ namespace MasterclassApiTest.Models
                 return klanten;
             }
 
+            string[] searchTypes = [searchType];
+            if (searchType == "all")
+            {
+                searchTypes = ["displaynaam", "achternaam", "straat", "woonplaats", "email"];
+            }
+
             foreach (Klant klant in klantList)
             {
-                switch (searchType) {
-                    case "displaynaam":
-                        matchTerm = klant.DisplayNaam;
-                        break;
-                    case "achternaam":
-                        matchTerm = klant.Achternaam;
-                        break;
-                    case "straat":
-                        matchTerm = klant.Straat;
-                        break;
-                    case "woonplaats":
-                        matchTerm = klant.Woonplaats;
-                        break;
-                    case "email":
-                        matchTerm = klant.Email;
-                        break;
-                    default:
-                        // If no matching search type was provided, return an empty list as well
-                        return klanten;
-                        break;
+                // Prevent the same customer from being added to the search results multiple times
+                bool klantIncluded = false;
+                foreach (string type in searchTypes)
+                {
+                    switch (type)
+                    {
+                        case "displaynaam":
+                            matchTerm = klant.DisplayNaam;
+                            break;
+                        case "achternaam":
+                            matchTerm = klant.Achternaam;
+                            break;
+                        case "straat":
+                            matchTerm = klant.Straat;
+                            break;
+                        case "woonplaats":
+                            matchTerm = klant.Woonplaats;
+                            break;
+                        case "email":
+                            matchTerm = klant.Email;
+                            break;
+                        // If the search terms in the array didn't match any of the above cases, exit prematurely
+                        // We won't find customers
+                        default:
+                            return klanten;
+                    }
                 }
-                // If there's a match between the search term and the data of the customer, add the customer to the list
-                if (matchTerm.ToLower().Contains(searchTerm)) klanten.Add(klant);
+
+                if (!klantIncluded && matchTerm.ToLower().Contains(searchTerm))
+                {
+                    klantIncluded = true;
+                    klanten.Add(klant);
+                }
             }
 
             return klanten;
