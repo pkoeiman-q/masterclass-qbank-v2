@@ -36,5 +36,48 @@ namespace MasterclassApiTest.Models
         public string TelefoonNummer { get; set; }
         [Required]
         public string Email { get; set; }
+
+        static public List<Klant> ZoekKlant(List<Klant> klantList, string searchType, string searchTerm)
+        {
+            // List of customers to search through, the attribute to look at (search type) and the term to search for
+            List<Klant> klanten = new List<Klant>();
+            searchType = searchType.ToLower();
+            searchTerm = searchTerm.ToLower();
+            string matchTerm = "";
+
+            // Return an empty list if no search term was provided
+            if (string.IsNullOrWhiteSpace(searchTerm)) {
+                return klanten;
+            }
+
+            foreach (Klant klant in klantList)
+            {
+                switch (searchType) {
+                    case "displaynaam":
+                        matchTerm = klant.DisplayNaam;
+                        break;
+                    case "achternaam":
+                        matchTerm = klant.Achternaam;
+                        break;
+                    case "straat":
+                        matchTerm = klant.Straat;
+                        break;
+                    case "woonplaats":
+                        matchTerm = klant.Woonplaats;
+                        break;
+                    case "email":
+                        matchTerm = klant.Email;
+                        break;
+                    default:
+                        // If no matching search type was provided, return an empty list as well
+                        return klanten;
+                        break;
+                }
+                // If there's a match between the search term and the data of the customer, add the customer to the list
+                if (matchTerm.ToLower().Contains(searchTerm)) klanten.Add(klant);
+            }
+
+            return klanten;
+        }
     }
 }

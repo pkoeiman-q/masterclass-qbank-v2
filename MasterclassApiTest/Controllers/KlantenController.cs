@@ -146,5 +146,17 @@ namespace MasterclassApiTest.Controllers
             // TODO: implement
             return Ok("TODO: maak een nieuwe rekening voor de gegeven klant aan.");
         }
+
+        [HttpGet]
+        [Route("zoeken")]
+        public IActionResult ZoekKlant([FromQuery] string searchType, [FromQuery] string searchTerm)
+        {
+            List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, searchType, searchTerm);
+            if (gevondenKlanten.Count == 0)
+            {
+                return Ok($"De gegeven klant is niet gevonden. Zoekterm = \"{searchTerm}\"");
+            }
+            return Ok(gevondenKlanten);
+        }
     }
 }
