@@ -4,11 +4,13 @@ using System.Text.Json;
 using System;
 using System.Numerics;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MasterclassApiTest.Controllers.v2
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
