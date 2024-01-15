@@ -7,10 +7,11 @@ using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MasterclassApiTest.Controllers
+namespace MasterclassApiTest.Controllers.v2
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("2.0")]
     public class KlantenController : ControllerBase
     {
         static List<Klant> klanten = new List<Klant>();
@@ -58,7 +59,7 @@ namespace MasterclassApiTest.Controllers
         {
             if (klanten.Count == 0)
             {
-                return Ok("Geen klanten gevonden (lijstgrootte is 0)");
+                return Ok("[Dit is versie 2!!]\nGeen klanten gevonden (lijstgrootte is 0)");
             }
 
             return Ok(klanten);

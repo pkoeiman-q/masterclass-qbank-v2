@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MasterclassApiTest.Controllers
+namespace MasterclassApiTest.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +25,8 @@ namespace MasterclassApiTest.Controllers
         {
             var gebruiker = Authenticate(login);
 
-            if (gebruiker != null) {
+            if (gebruiker != null)
+            {
                 var token = Generate(gebruiker);
                 return Ok(token);
             }

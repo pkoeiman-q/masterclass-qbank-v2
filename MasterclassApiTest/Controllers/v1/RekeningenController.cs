@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MasterclassApiTest.Controllers
+namespace MasterclassApiTest.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using MasterclassApiTest.Models;
 
-namespace MasterclassApiTest.Controllers
+namespace MasterclassApiTest.Controllers.v1
 {
     [Authorize(Roles = "Admin")]
     public class GebruikersController : ControllerBase
