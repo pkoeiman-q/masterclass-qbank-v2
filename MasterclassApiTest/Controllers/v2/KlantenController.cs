@@ -16,7 +16,8 @@ namespace MasterclassApiTest.Controllers.v2
     [ApiVersion("2.0")]
     public class KlantenController : ControllerBase
     {
-        static List<Klant> klanten = new List<Klant>();
+        List<Klant> klanten = new List<Klant>();
+
         private bool KlantIdExists(int id)
         {
             foreach (var klant in klanten)
@@ -73,7 +74,7 @@ namespace MasterclassApiTest.Controllers.v2
         {
             if (!KlantIdExists(id))
             {
-                return BadRequest("De gegeven ID is niet gevonden");
+                return NotFound("De gegeven ID is niet gevonden");
             }
 
             Klant klant = klanten.ElementAt(id);

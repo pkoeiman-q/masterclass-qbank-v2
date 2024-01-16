@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiTest", "MasterclassApiTest\MasterclassApiTest.csproj", "{C5D03EBD-35F7-430D-A20A-6EA666FDDF09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassApiXUnit", "MasterclassApiXUnit\MasterclassApiXUnit.csproj", "{2284C9B3-D64C-4B14-A71C-F2C3C5C39C2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiUnitTests", "MasterclassApiXUnit\MasterclassApiUnitTests.csproj", "{2284C9B3-D64C-4B14-A71C-F2C3C5C39C2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

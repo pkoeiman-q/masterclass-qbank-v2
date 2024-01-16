@@ -1,7 +1,7 @@
 using MasterclassApiTest.Controllers;
 using MasterclassApiTest.Models;
 
-namespace MasterclassApiXUnit
+namespace MasterclassApiUnitTests
 {
     public class KlantTests
     {

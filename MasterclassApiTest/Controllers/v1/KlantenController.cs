@@ -15,6 +15,7 @@ namespace MasterclassApiTest.Controllers.v1
     public class KlantenController : ControllerBase
     {
         static List<Klant> klanten = new List<Klant>();
+
         private bool KlantIdExists(int id)
         {
             foreach (var klant in klanten)
