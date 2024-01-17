@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-	<InternalsVisibleTo Include="MasterclassApiIntegrationTests"/>
+	<InternalsVisibleTo Include="MasterclassApiIntegrationTests" />
   </ItemGroup>
 
 </Project>
