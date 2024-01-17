@@ -1,41 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MasterclassApiTest.Entities;
+using MasterclassApiTest.Repositories;
+using Microsoft.EntityFrameworkCore;
 
-namespace MasterclassApiTest.Models
+namespace MasterclassApiTest.Services
 {
-    public class Klant
+    public class KlantenService
     {
-        [Required]
-        public int KlantNummer { get; set; }
-        [StringLength(50, MinimumLength = 3)]
-        public string LoginNaam { get; set; }
-        [Required]
-        public DateTime LaatstIngelogd { get; set; }
-        [Required]
-        public string DisplayNaam { get; set; }
-        [Required]
-        public string Voorletters { get; set; }
-        [Required]
-        public string Achternaam { get; set; }
-        [Required]
-        public string Geslacht { get; set; }
-        [Required]
-        public DateTime GeboorteDatum { get; set; }
-        public DateTime? OverlijdensDatum { get; set; }
-        [Required]
-        public string Straat { get; set; }
-        [Required]
-        public int Huisnummer { get; set; }
-        public string? HuisnummerToevoeging { get; set; }
-        [Required]
-        public string Postcode { get; set; }
-        [Required]
-        public string Woonplaats { get; set; }
-        [Required]
-        public int Bsn { get; set; }
-        [Required]
-        public string TelefoonNummer { get; set; }
-        [Required]
-        public string Email { get; set; }
+        private readonly KlantenRepository _repository;
+        public KlantenService(KlantenRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<List<Klant>> GetAllKlanten()
+        {
+            List<Klant> klanten = await _repository.GetAllKlanten();
+            return klanten;
+        }
 
         static public List<Klant> ZoekKlant(List<Klant> klantList, string searchType, string searchTerm)
         {
@@ -46,7 +27,8 @@ namespace MasterclassApiTest.Models
             string matchTerm = "";
 
             // Return an empty list if no search term was provided
-            if (string.IsNullOrWhiteSpace(searchTerm)) {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
                 return klanten;
             }
 

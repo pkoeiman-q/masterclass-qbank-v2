@@ -1,4 +1,6 @@
-﻿namespace MasterclassApiTest.Models
+﻿using MasterclassApiTest.Entities;
+
+namespace MasterclassApiTest.Models
 {
     public class GebruikerConstanten
     {

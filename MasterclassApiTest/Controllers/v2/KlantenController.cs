@@ -1,21 +1,27 @@
-﻿using MasterclassApiTest.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System;
 using System.Numerics;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using MasterclassApiTest.Entities;
+using MasterclassApiTest.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MasterclassApiTest.Controllers.v2
 {
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
     public class KlantenController : ControllerBase
     {
+        private readonly KlantenService _service;
+        public KlantenController(KlantenService service)
+        {
+            _service = service;
+        }
         List<Klant> klanten = new List<Klant>();
 
         private bool KlantIdExists(int id)
@@ -30,41 +36,12 @@ namespace MasterclassApiTest.Controllers.v2
 
             return false;
         }
-        private Klant CreateNewKlant(Klant klant)
-        {
-            Klant newKlant = new Klant
-            {
-                KlantNummer = klanten.Count(),
-                LoginNaam = klant.LoginNaam,
-                LaatstIngelogd = klant.LaatstIngelogd,
-                DisplayNaam = klant.DisplayNaam,
-                Voorletters = klant.Voorletters,
-                Achternaam = klant.Achternaam,
-                Geslacht = klant.Geslacht,
-                GeboorteDatum = klant.GeboorteDatum,
-                OverlijdensDatum = klant.OverlijdensDatum,
-                Straat = klant.Straat,
-                Huisnummer = klant.Huisnummer,
-                HuisnummerToevoeging = klant.HuisnummerToevoeging,
-                Postcode = klant.Postcode,
-                Woonplaats = klant.Woonplaats,
-                Bsn = klant.Bsn,
-                TelefoonNummer = klant.TelefoonNummer,
-                Email = klant.Email,
-            };
-            klanten.Add(newKlant);
-            return newKlant;
-        }
 
         // GET: api/<KlantenController>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            if (klanten.Count == 0)
-            {
-                return Ok("[Dit is versie 2!!]\nGeen klanten gevonden (lijstgrootte is 0)");
-            }
-
+            List<Klant> klanten = await _service.GetAllKlanten();
             return Ok(klanten);
         }
 
@@ -86,8 +63,7 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(Klant), 200)]
         public IActionResult Post([FromBody] Klant klant)
         {
-            Klant newKlant = CreateNewKlant(klant);
-            return Ok(newKlant);
+            throw new NotImplementedException();
         }
 
         // PUT api/<KlantenController>/5
@@ -142,16 +118,16 @@ namespace MasterclassApiTest.Controllers.v2
             return Ok("TODO: maak een nieuwe rekening voor de gegeven klant aan.");
         }
 
-        [HttpGet]
-        [Route("zoeken")]
-        public IActionResult ZoekKlant([FromQuery] string searchType, [FromQuery] string searchTerm)
-        {
-            List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, searchType, searchTerm);
-            if (gevondenKlanten.Count == 0)
-            {
-                return Ok($"De gegeven klant is niet gevonden. Zoekterm = \"{searchTerm}\"");
-            }
-            return Ok(gevondenKlanten);
-        }
+        //[HttpGet]
+        //[Route("zoeken")]
+        //public IActionResult ZoekKlant([FromQuery] string searchType, [FromQuery] string searchTerm)
+        //{
+        //    List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, searchType, searchTerm);
+        //    if (gevondenKlanten.Count == 0)
+        //    {
+        //        return Ok($"De gegeven klant is niet gevonden. Zoekterm = \"{searchTerm}\"");
+        //    }
+        //    return Ok(gevondenKlanten);
+        //}
     }
 }

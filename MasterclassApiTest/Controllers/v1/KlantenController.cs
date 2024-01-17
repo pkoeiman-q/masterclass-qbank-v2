@@ -1,9 +1,9 @@
-﻿using MasterclassApiTest.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System;
 using System.Numerics;
 using System.Linq;
+using MasterclassApiTest.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -138,18 +138,6 @@ namespace MasterclassApiTest.Controllers.v1
         {
             // TODO: implement
             return Ok("TODO: maak een nieuwe rekening voor de gegeven klant aan.");
-        }
-
-        [HttpGet]
-        [Route("zoeken")]
-        public IActionResult ZoekKlant([FromQuery] string searchType, [FromQuery] string searchTerm)
-        {
-            List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, searchType, searchTerm);
-            if (gevondenKlanten.Count == 0)
-            {
-                return Ok($"De gegeven klant is niet gevonden. Zoekterm = \"{searchTerm}\"");
-            }
-            return Ok(gevondenKlanten);
         }
     }
 }

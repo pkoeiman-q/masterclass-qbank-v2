@@ -1,4 +1,5 @@
-﻿using MasterclassApiTest.Models;
+﻿using MasterclassApiTest.Entities;
+using MasterclassApiTest.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

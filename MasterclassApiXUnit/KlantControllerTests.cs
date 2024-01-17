@@ -1,4 +1,4 @@
-﻿using MasterclassApiTest.Models;
+﻿using MasterclassApiTest.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

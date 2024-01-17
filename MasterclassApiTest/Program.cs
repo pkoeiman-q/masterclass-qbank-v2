@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MasterclassApiTest;
 using Microsoft.OpenApi.Models;
+using MasterclassApiTest.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MasterclassApiTest.Repositories;
+using MasterclassApiTest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -33,11 +38,14 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
+// Response time filter
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ResponseTimeFilter());
 });
 
+// Add API versioning
 builder.Services.AddApiVersioning(opt =>
 {
     opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
@@ -59,6 +67,7 @@ builder.Services.AddVersionedApiExplorer(setup =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    // Add functionality to SwaggerUI to allow authentication using JWT
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -84,6 +93,14 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+// Services/repositories
+builder.Services.AddScoped<KlantenRepository>();
+builder.Services.AddScoped<KlantenService>();
 
 var app = builder.Build();
 
