@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using MasterclassApiTest.Entities;
 using MasterclassApiTest.Services;
+using MasterclassApiTest.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,19 +25,6 @@ namespace MasterclassApiTest.Controllers.v2
         }
         List<Klant> klanten = new List<Klant>();
 
-        private bool KlantIdExists(int id)
-        {
-            foreach (var klant in klanten)
-            {
-                if (klant.KlantNummer == id)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         // GET: api/<KlantenController>
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -47,51 +35,47 @@ namespace MasterclassApiTest.Controllers.v2
 
         // GET api/<KlantenController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            if (!KlantIdExists(id))
-            {
-                return NotFound("De gegeven ID is niet gevonden");
-            }
-
-            Klant klant = klanten.ElementAt(id);
+            Klant? klant = await _service.GetKlant(id);
+            if (klant == null) return KlantNotFoundMessage();
             return Ok(klant);
         }
 
         // POST api/<KlantenController>
         [HttpPost]
         [ProducesResponseType(typeof(Klant), 200)]
-        public IActionResult Post([FromBody] Klant klant)
+        public async Task <IActionResult> Post([FromBody] KlantInput input)
         {
-            throw new NotImplementedException();
+            Klant? klant = await _service.CreateKlant(input);
+            if (klant == null)
+            {
+                return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");
+            }
+            return Ok(klant);
         }
 
         // PUT api/<KlantenController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Klant klant)
+        public async Task<IActionResult> Put(int id, [FromBody] KlantInput input)
         {
-            if (!KlantIdExists(id))
-            {
-                return BadRequest("Geprobeerd een klant aan te passen, maar deze was niet gevonden.");
-            }
-            klanten[id] = klant;
-
-            return Ok(klanten[id]);
+            Klant? klant = await _service.UpdateKlant(id, input);
+            if (klant == null) return KlantNotFoundMessage();
+            return Ok(klant);
         }
 
         // DELETE api/<KlantenController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (!KlantIdExists(id))
-            {
-                return BadRequest("De gegeven ID is niet gevonden");
-            }
+            Klant? klant = await _service.DeleteKlant(id);
+            if (klant == null) return KlantNotFoundMessage();
+            return Ok(klant);
+        }
 
-            var existingKlant = klanten[id] as Klant;
-            klanten.Remove(existingKlant);
-
-            return Ok("De klant met de gegeven ID is verwijderd");
+        private IActionResult KlantNotFoundMessage()
+        {
+            return NotFound("De klant met de gegeven ID is niet gevonden.");
         }
 
         [HttpGet]

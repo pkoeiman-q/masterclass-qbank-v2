@@ -1,4 +1,5 @@
 ﻿using MasterclassApiTest.Entities;
+using MasterclassApiTest.Models;
 using MasterclassApiTest.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +13,15 @@ namespace MasterclassApiTest.Services
             _repository = repository;
         }
 
-        public async Task<List<Klant>> GetAllKlanten()
-        {
-            List<Klant> klanten = await _repository.GetAllKlanten();
-            return klanten;
-        }
+        public async Task<List<Klant>> GetAllKlanten() => await _repository.GetAllKlanten();
+
+        public async Task<Klant?> GetKlant(int id) => await _repository.GetKlant(id);
+
+        public async Task<Klant?> CreateKlant(KlantInput input) => await _repository.CreateKlant(input);
+
+        public async Task<Klant?> UpdateKlant(int id, KlantInput input) => await _repository.UpdateKlant(id, input);
+
+        public async Task<Klant?> DeleteKlant(int id) => await _repository.DeleteKlant(id);
 
         static public List<Klant> ZoekKlant(List<Klant> klantList, string searchType, string searchTerm)
         {
