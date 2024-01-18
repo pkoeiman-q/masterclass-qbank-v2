@@ -22,14 +22,7 @@ namespace MasterclassApiTest.Entities
         public DateTime GeboorteDatum { get; set; }
         public DateTime? OverlijdensDatum { get; set; }
         [Required]
-        public string Straat { get; set; }
-        [Required]
-        public int Huisnummer { get; set; }
-        public string? HuisnummerToevoeging { get; set; }
-        [Required]
-        public string Postcode { get; set; }
-        [Required]
-        public string Woonplaats { get; set; }
+        public Adres Adres { get; set; }
         [Required]
         public int Bsn { get; set; }
         [Required]

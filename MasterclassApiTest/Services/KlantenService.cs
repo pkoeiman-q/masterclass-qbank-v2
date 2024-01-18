@@ -58,10 +58,10 @@ namespace MasterclassApiTest.Services
                             matchTerm = klant.Achternaam;
                             break;
                         case "straat":
-                            matchTerm = klant.Straat;
+                            matchTerm = klant.Adres.Straat;
                             break;
                         case "woonplaats":
-                            matchTerm = klant.Woonplaats;
+                            matchTerm = klant.Adres.Woonplaats;
                             break;
                         case "email":
                             matchTerm = klant.Email;

@@ -29,6 +29,15 @@ namespace MasterclassApiTest.Repositories
 
         private Klant CreateKlantFromInput(KlantInput input)
         {
+            Adres adres = new Adres
+            {
+                Straat = input.Straat,
+                Huisnummer = input.Huisnummer,
+                HuisnummerToevoeging = input.HuisnummerToevoeging,
+                Postcode = input.Postcode,
+                Woonplaats = input.Woonplaats
+            };
+
             Klant klantToSave = new Klant
             {
                 LoginNaam = input.LoginNaam,
@@ -39,14 +48,10 @@ namespace MasterclassApiTest.Repositories
                 Geslacht = input.Geslacht,
                 GeboorteDatum = input.GeboorteDatum,
                 OverlijdensDatum = input.OverlijdensDatum,
-                Straat = input.Straat,
-                Huisnummer = input.Huisnummer,
-                HuisnummerToevoeging = input.HuisnummerToevoeging,
-                Postcode = input.Postcode,
-                Woonplaats = input.Woonplaats,
+                Adres = adres,
                 Bsn = input.Bsn,
                 TelefoonNummer = input.TelefoonNummer,
-                Email = input.Email,
+                Email = input.Email
             };
             return klantToSave;
         }
@@ -68,6 +73,15 @@ namespace MasterclassApiTest.Repositories
                 return null;
             }
 
+            Adres adres = new Adres
+            {
+                Straat = input.Straat,
+                Huisnummer = input.Huisnummer,
+                HuisnummerToevoeging = input.HuisnummerToevoeging,
+                Postcode = input.Postcode,
+                Woonplaats = input.Woonplaats
+            };
+
             klantToUpdate.LoginNaam = input.LoginNaam;
             klantToUpdate.LaatstIngelogd = DateTime.Now;
             klantToUpdate.DisplayNaam = input.LoginNaam;
@@ -76,11 +90,7 @@ namespace MasterclassApiTest.Repositories
             klantToUpdate.Geslacht = input.Geslacht;
             klantToUpdate.GeboorteDatum = input.GeboorteDatum;
             klantToUpdate.OverlijdensDatum = input.OverlijdensDatum;
-            klantToUpdate.Straat = input.Straat;
-            klantToUpdate.Huisnummer = input.Huisnummer;
-            klantToUpdate.HuisnummerToevoeging = input.HuisnummerToevoeging;
-            klantToUpdate.Postcode = input.Postcode;
-            klantToUpdate.Woonplaats = input.Woonplaats;
+            klantToUpdate.Adres = adres;
             klantToUpdate.Bsn = input.Bsn;
             klantToUpdate.TelefoonNummer = input.TelefoonNummer;
             klantToUpdate.Email = input.Email;

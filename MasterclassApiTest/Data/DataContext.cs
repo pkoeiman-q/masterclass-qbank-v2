@@ -25,6 +25,10 @@ namespace MasterclassApiTest.Data
                 .HasOne(rekening => rekening.Klant)
                 .WithMany(klant => klant.Rekeningen)
                 .HasForeignKey("KlantNummer");
+            modelBuilder.Entity<Klant>(x =>
+            {
+                x.ComplexProperty(y => y.Adres, y => { y.IsRequired(); });
+            });
         }
     }
 }
