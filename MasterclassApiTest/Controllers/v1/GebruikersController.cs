@@ -30,7 +30,7 @@ namespace MasterclassApiTest.Controllers.v1
         public IActionResult Admin()
         {
             var huidigeGebruiker = GetCurrentUser();
-            return Ok($"Hoi {huidigeGebruiker.GebruikersNaam}, je rol is {huidigeGebruiker.Role}");
+            return Ok($"Hoi {huidigeGebruiker.LoginNaam}, je rol is {huidigeGebruiker.Role}");
         }
 
         private Gebruiker GetCurrentUser()
@@ -41,7 +41,7 @@ namespace MasterclassApiTest.Controllers.v1
                 var userClaims = identity.Claims;
                 return new Gebruiker
                 {
-                    GebruikersNaam = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
+                    LoginNaam = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
                     Email = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value,
                     Role = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value
                 };

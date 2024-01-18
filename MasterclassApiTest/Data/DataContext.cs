@@ -10,17 +10,14 @@ namespace MasterclassApiTest.Data
             
         }
 
-        public DbSet<Gebruiker> Gebruikers { get; set; }
         public DbSet<Klant> Klanten { get; set; }
+        public DbSet<Medewerker> Medewerkers { get; set; }
         public DbSet<Rekening> Rekeningen { get; set; }
         public DbSet<Overboeking> Overboekingen { get; set; }
 
         // Make it so the username has per Gebruiker has to be unique, even though its not the primary key
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Gebruiker>()
-                .HasIndex(g => new { g.GebruikersNaam })
-                .IsUnique(true);
             modelBuilder.Entity<Rekening>()
                 .HasOne(rekening => rekening.Klant)
                 .WithMany(klant => klant.Rekeningen)
@@ -29,6 +26,10 @@ namespace MasterclassApiTest.Data
             {
                 x.ComplexProperty(y => y.Adres, y => { y.IsRequired(); });
             });
+            modelBuilder.Entity<Klant>()
+                .HasIndex(klant => klant.Id);
+            modelBuilder.Entity<Medewerker>()
+                .HasIndex(medewerker => medewerker.Id);
         }
     }
 }

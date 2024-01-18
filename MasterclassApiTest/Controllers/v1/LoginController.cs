@@ -42,7 +42,7 @@ namespace MasterclassApiTest.Controllers.v1
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, gebruiker.GebruikersNaam),
+                new Claim(ClaimTypes.NameIdentifier, gebruiker.LoginNaam),
                 new Claim(ClaimTypes.Email, gebruiker.Email),
                 new Claim(ClaimTypes.Role, gebruiker.Role)
             };
@@ -63,7 +63,7 @@ namespace MasterclassApiTest.Controllers.v1
             // DIT IS ALLEEN OM MEE TE TESTEN, DIT IS NIET VOOR PRODUCTIE GEBRUIK
             var gebruiker = GebruikerConstanten.Gebruikers.FirstOrDefault
             (
-                o => o.GebruikersNaam.ToLower() == login.GebruikersNaam.ToLower()
+                o => o.LoginNaam.ToLower() == login.GebruikersNaam.ToLower()
                 && o.Wachtwoord == login.Wachtwoord
             );
 

@@ -2,16 +2,8 @@
 
 namespace MasterclassApiTest.Entities
 {
-    public class Klant
+    public class Klant : Gebruiker
     {
-        [Key]
-        public int KlantNummer { get; set; }
-        [StringLength(50, MinimumLength = 3)]
-        public string LoginNaam { get; set; }
-        [Required]
-        public DateTime LaatstIngelogd { get; set; }
-        [Required]
-        public string DisplayNaam { get; set; }
         [Required]
         public string Voorletters { get; set; }
         [Required]
@@ -27,8 +19,6 @@ namespace MasterclassApiTest.Entities
         public int Bsn { get; set; }
         [Required]
         public string TelefoonNummer { get; set; }
-        [Required]
-        public string Email { get; set; }
-        public List<Rekening> Rekeningen { get; set; }
+        public List<Rekening> Rekeningen { get; set; } = new List<Rekening>();
     }
 }

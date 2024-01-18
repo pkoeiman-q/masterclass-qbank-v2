@@ -51,7 +51,7 @@ namespace MasterclassApiTest.Repositories
                 Adres = adres,
                 Bsn = input.Bsn,
                 TelefoonNummer = input.TelefoonNummer,
-                Email = input.Email
+                Email = input.Email,
             };
             return klantToSave;
         }
@@ -83,7 +83,6 @@ namespace MasterclassApiTest.Repositories
             };
 
             klantToUpdate.LoginNaam = input.LoginNaam;
-            klantToUpdate.LaatstIngelogd = DateTime.Now;
             klantToUpdate.DisplayNaam = input.LoginNaam;
             klantToUpdate.Voorletters = input.Voorletters;
             klantToUpdate.Achternaam = input.Achternaam;

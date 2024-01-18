@@ -8,17 +8,21 @@ namespace MasterclassApiTest.Models
         {
             new Gebruiker()
             {
-                GebruikersNaam = "adam",
+                LoginNaam = "adam",
                 Email = "foo1@bar.com",
                 Wachtwoord = "a",
-                Role = "Admin"
-            },
+                Role = "Admin",
+                DisplayNaam = "Adam",
+                LaatstIngelogd = DateTime.UnixEpoch
+    },
             new Gebruiker()
             {
-                GebruikersNaam = "eve",
+                LoginNaam = "eve",
                 Email = "foo2@bar.com",
                 Wachtwoord = "e",
-                Role = "Customer"
+                Role = "Customer",
+                DisplayNaam = "Eve",
+                LaatstIngelogd = DateTime.UnixEpoch
             },
         };
     }
