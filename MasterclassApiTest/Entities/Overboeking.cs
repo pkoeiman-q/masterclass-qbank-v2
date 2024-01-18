@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MasterclassApiTest.Models
+namespace MasterclassApiTest.Entities
 {
     public class Overboeking
     {
-        [Required]
+        [Key]
         public int VolgNummer { get; set; }
         [Required]
         public DateTime BoekDatum { get; set; }

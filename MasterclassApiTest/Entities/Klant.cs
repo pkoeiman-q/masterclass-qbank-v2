@@ -36,5 +36,6 @@ namespace MasterclassApiTest.Entities
         public string TelefoonNummer { get; set; }
         [Required]
         public string Email { get; set; }
+        public List<Rekening> Rekeningen { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MasterclassApiTest.Models
+namespace MasterclassApiTest.Entities
 {
     public class Rekening
     {
-        [Required]
+        [Key]
         public string RekeningNummer { get; set; }
         [Required]
-        public int KlantNummer { get; set; }
+        public Klant Klant { get; set; }
         [Required]
         public string Type { get; set; }
         [Required]
