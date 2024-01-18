@@ -39,11 +39,13 @@ namespace MasterclassApiTest.Controllers.v1
             if (identity != null)
             {
                 var userClaims = identity.Claims;
+                var role = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value;
+                var parsedRole = Enum.TryParse(role, true, out UserAccessRole userAccessRole);
                 return new Gebruiker
                 {
                     LoginNaam = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
                     Email = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Email)?.Value,
-                    Role = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value
+                    Role = userAccessRole
                 };
             }
             return null;

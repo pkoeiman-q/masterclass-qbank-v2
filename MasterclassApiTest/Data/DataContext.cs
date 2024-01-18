@@ -22,10 +22,27 @@ namespace MasterclassApiTest.Data
                 .HasOne(rekening => rekening.Klant)
                 .WithMany(klant => klant.Rekeningen)
                 .HasForeignKey("KlantNummer");
+
+            // Assign Adres as complex property
             modelBuilder.Entity<Klant>(x =>
             {
                 x.ComplexProperty(y => y.Adres, y => { y.IsRequired(); });
             });
+
+            // Convert role enum to string when persisting to database (and revert when getting data from database)
+            modelBuilder.Entity<Klant>()
+                .Property(k => k.Role)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (UserAccessRole)Enum.Parse(typeof(UserAccessRole), v)
+                );
+            modelBuilder.Entity<Medewerker>()
+                .Property(k => k.Role)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (UserAccessRole)Enum.Parse(typeof(UserAccessRole), v)
+                );
+
             modelBuilder.Entity<Klant>()
                 .HasIndex(klant => klant.Id);
             modelBuilder.Entity<Medewerker>()

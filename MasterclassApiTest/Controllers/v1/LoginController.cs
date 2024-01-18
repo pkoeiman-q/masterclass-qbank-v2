@@ -39,12 +39,12 @@ namespace MasterclassApiTest.Controllers.v1
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
+            
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, gebruiker.LoginNaam),
                 new Claim(ClaimTypes.Email, gebruiker.Email),
-                new Claim(ClaimTypes.Role, gebruiker.Role)
+                new Claim(ClaimTypes.Role, gebruiker.Role.ToString())
             };
 
             var token = new JwtSecurityToken(

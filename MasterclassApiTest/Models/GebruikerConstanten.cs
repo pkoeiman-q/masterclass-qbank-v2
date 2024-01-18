@@ -11,7 +11,7 @@ namespace MasterclassApiTest.Models
                 LoginNaam = "adam",
                 Email = "foo1@bar.com",
                 Wachtwoord = "a",
-                Role = "Admin",
+                Role = UserAccessRole.Medewerker,
                 DisplayNaam = "Adam",
                 LaatstIngelogd = DateTime.UnixEpoch
     },
@@ -20,7 +20,7 @@ namespace MasterclassApiTest.Models
                 LoginNaam = "eve",
                 Email = "foo2@bar.com",
                 Wachtwoord = "e",
-                Role = "Customer",
+                Role = UserAccessRole.Klant,
                 DisplayNaam = "Eve",
                 LaatstIngelogd = DateTime.UnixEpoch
             },
