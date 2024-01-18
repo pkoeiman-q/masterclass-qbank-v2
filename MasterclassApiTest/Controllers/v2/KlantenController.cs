@@ -27,9 +27,9 @@ namespace MasterclassApiTest.Controllers.v2
 
         // GET: api/<KlantenController>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] KlantPageParameters klantPageParameters)
         {
-            List<Klant> klanten = await _service.GetAllKlanten();
+            List<Klant> klanten = await _service.GetAllKlanten(klantPageParameters);
             return Ok(klanten);
         }
 

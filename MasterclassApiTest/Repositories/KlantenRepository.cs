@@ -1,6 +1,7 @@
 ﻿using MasterclassApiTest.Data;
 using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
+using MasterclassApiTest.Pagination;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 
@@ -15,9 +16,16 @@ namespace MasterclassApiTest.Repositories
             _context = context;
         }
 
-        public async Task<List<Klant>> GetAllKlanten()
+        public async Task<PagedList<Klant>> GetAllKlanten(KlantPageParameters klantPageParameters)
         {
-            var klanten = await _context.Klanten.ToListAsync();
+            var klanten = PagedList<Klant>
+                .ToPagedList(
+                    _context.Klanten.OrderBy(k => k.Id),
+                    klantPageParameters.PageNumber,
+                    klantPageParameters.PageSize
+                );
+                
+
             return klanten;
         }
 

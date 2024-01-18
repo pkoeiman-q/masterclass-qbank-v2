@@ -1,5 +1,6 @@
 ﻿using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
+using MasterclassApiTest.Pagination;
 using MasterclassApiTest.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +14,7 @@ namespace MasterclassApiTest.Services
             _repository = repository;
         }
 
-        public async Task<List<Klant>> GetAllKlanten() => await _repository.GetAllKlanten();
+        public async Task<List<Klant>> GetAllKlanten(KlantPageParameters klantPageParameters) => await _repository.GetAllKlanten(klantPageParameters);
 
         public async Task<Klant?> GetKlant(int id) => await _repository.GetKlant(id);
 
