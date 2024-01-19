@@ -14,15 +14,15 @@ namespace MasterclassApiTest.Services
             _repository = repository;
         }
 
-        public async Task<List<Klant>> GetAllKlanten(KlantPageParameters klantPageParameters) => await _repository.GetAllKlanten(klantPageParameters);
+        public async Task<List<GetKlantDTO>> GetAllKlanten(KlantPageParameters klantPageParameters) => await _repository.GetAllKlanten(klantPageParameters);
 
-        public async Task<Klant?> GetKlant(int id) => await _repository.GetKlant(id);
+        public async Task<GetKlantDTO?> GetKlant(int id) => await _repository.GetKlant(id);
 
-        public async Task<Klant?> CreateKlant(KlantInput input) => await _repository.CreateKlant(input);
+        public async Task<GetKlantDTO?> CreateKlant(CreateKlantDTO input) => await _repository.CreateKlant(input);
 
-        public async Task<Klant?> UpdateKlant(int id, KlantInput input) => await _repository.UpdateKlant(id, input);
+        public async Task<GetKlantDTO?> UpdateKlant(int id, CreateKlantDTO input) => await _repository.UpdateKlant(id, input);
 
-        public async Task<Klant?> DeleteKlant(int id) => await _repository.DeleteKlant(id);
+        public async Task<GetKlantDTO?> DeleteKlant(int id) => await _repository.DeleteKlant(id);
 
         static public List<Klant> ZoekKlant(List<Klant> klantList, string searchType, string searchTerm)
         {

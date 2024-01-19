@@ -16,36 +16,66 @@ namespace MasterclassApiTest.Repositories
             _context = context;
         }
 
-        public async Task<PagedList<Klant>> GetAllKlanten(KlantPageParameters klantPageParameters)
+        public async Task<PagedList<GetKlantDTO>> GetAllKlanten(KlantPageParameters klantPageParameters)
         {
-            var klanten = PagedList<Klant>
+            var query = GetKlantenAsDTO();
+
+            var list = PagedList<GetKlantDTO>
                 .ToPagedList(
-                    _context.Klanten.OrderBy(k => k.Id),
+                    //query.OrderBy(k => k.GetType().GetProperty(klantPageParameters.AttributeToSortBy)),
+                    query.OrderBy(k => k.Achternaam),
                     klantPageParameters.PageNumber,
                     klantPageParameters.PageSize
                 );
-                
 
-            return klanten;
+            return list;
         }
 
-        public async Task<Klant?> GetKlant(int id)
+        public IQueryable<GetKlantDTO> GetKlantenAsDTO()
         {
-            var klant = await _context.Klanten.FindAsync(id);
+            var query = from klant in _context.Klanten
+                        select new GetKlantDTO
+                        {
+                            Id = klant.Id,
+                            Achternaam = klant.Achternaam,
+                            Voorletters = klant.Voorletters,
+                            Email = klant.Email,
+                            GeboorteDatum = klant.GeboorteDatum,
+                            Geslacht = klant.Geslacht,
+                            Adres = klant.Adres,
+                            OverlijdensDatum = klant.OverlijdensDatum,
+                            TelefoonNummer = klant.TelefoonNummer,
+                        };
+            return query;
+        }
+
+        public GetKlantDTO ConvertSingleToGetKlantDTO(Klant klant)
+        {
+            GetKlantDTO klantDTO = new GetKlantDTO
+            {
+                Achternaam = klant.Achternaam,
+                Adres = klant.Adres,
+                Email = klant.Email,
+                GeboorteDatum = klant.GeboorteDatum,
+                Geslacht = klant.Geslacht,
+                Id = klant.Id,
+                OverlijdensDatum = klant.OverlijdensDatum,
+                TelefoonNummer = klant.TelefoonNummer,
+                Voorletters = klant.Voorletters,
+            };
+
+            return klantDTO;
+        }
+
+        public async Task<GetKlantDTO?> GetKlant(int id)
+        {
+            var query = GetKlantenAsDTO();
+            var klant = await query.SingleAsync(k => k.Id == id);
             return klant;
         }
 
-        private Klant CreateKlantFromInput(KlantInput input)
+        private Klant CreateKlantFromInput(CreateKlantDTO input)
         {
-            Adres adres = new Adres
-            {
-                Straat = input.Straat,
-                Huisnummer = input.Huisnummer,
-                HuisnummerToevoeging = input.HuisnummerToevoeging,
-                Postcode = input.Postcode,
-                Woonplaats = input.Woonplaats
-            };
-
             Klant klantToSave = new Klant
             {
                 LoginNaam = input.LoginNaam,
@@ -56,7 +86,7 @@ namespace MasterclassApiTest.Repositories
                 Geslacht = input.Geslacht,
                 GeboorteDatum = input.GeboorteDatum,
                 OverlijdensDatum = input.OverlijdensDatum,
-                Adres = adres,
+                Adres = input.Adres,
                 Bsn = input.Bsn,
                 TelefoonNummer = input.TelefoonNummer,
                 Email = input.Email,
@@ -64,31 +94,22 @@ namespace MasterclassApiTest.Repositories
             return klantToSave;
         }
 
-        public async Task<Klant> CreateKlant(KlantInput input)
+        public async Task<GetKlantDTO> CreateKlant(CreateKlantDTO input)
         {
             Klant klantToSave = CreateKlantFromInput(input);
             _context.Klanten.Add(klantToSave);
             await _context.SaveChangesAsync();
 
-            return klantToSave;
+            return ConvertSingleToGetKlantDTO(klantToSave);
         }
 
-        public async Task<Klant?> UpdateKlant (int id, KlantInput input)
+        public async Task<GetKlantDTO?> UpdateKlant (int id, CreateKlantDTO input)
         {
             Klant? klantToUpdate = await _context.Klanten.FindAsync(id);
             if (klantToUpdate == null)
             {
                 return null;
             }
-
-            Adres adres = new Adres
-            {
-                Straat = input.Straat,
-                Huisnummer = input.Huisnummer,
-                HuisnummerToevoeging = input.HuisnummerToevoeging,
-                Postcode = input.Postcode,
-                Woonplaats = input.Woonplaats
-            };
 
             klantToUpdate.LoginNaam = input.LoginNaam;
             klantToUpdate.DisplayNaam = input.LoginNaam;
@@ -97,16 +118,16 @@ namespace MasterclassApiTest.Repositories
             klantToUpdate.Geslacht = input.Geslacht;
             klantToUpdate.GeboorteDatum = input.GeboorteDatum;
             klantToUpdate.OverlijdensDatum = input.OverlijdensDatum;
-            klantToUpdate.Adres = adres;
+            klantToUpdate.Adres = input.Adres;
             klantToUpdate.Bsn = input.Bsn;
             klantToUpdate.TelefoonNummer = input.TelefoonNummer;
             klantToUpdate.Email = input.Email;
 
             await _context.SaveChangesAsync();
-            return klantToUpdate;
+            return ConvertSingleToGetKlantDTO(klantToUpdate);
         }
 
-        public async Task<Klant?> DeleteKlant(int id)
+        public async Task<GetKlantDTO?> DeleteKlant(int id)
         {
             Klant? klantToDelete = await _context.Klanten.FindAsync(id);
             if (klantToDelete == null)
@@ -116,7 +137,7 @@ namespace MasterclassApiTest.Repositories
 
             _context.Remove(klantToDelete);
             await _context.SaveChangesAsync();
-            return klantToDelete;
+            return ConvertSingleToGetKlantDTO(klantToDelete);
         }
     }
 }

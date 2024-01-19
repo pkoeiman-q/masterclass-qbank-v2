@@ -24,31 +24,32 @@ namespace MasterclassApiTest.Controllers.v2
         {
             _service = service;
         }
-        List<Klant> klanten = new List<Klant>();
 
         // GET: api/<KlantenController>
         [HttpGet]
+        [ProducesResponseType(typeof(List<GetKlantDTO>), 200)]
         public async Task<IActionResult> Get([FromQuery] KlantPageParameters klantPageParameters)
         {
-            List<Klant> klanten = await _service.GetAllKlanten(klantPageParameters);
+            List<GetKlantDTO> klanten = await _service.GetAllKlanten(klantPageParameters);
             return Ok(klanten);
         }
 
         // GET api/<KlantenController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task<IActionResult> Get(int id)
         {
-            Klant? klant = await _service.GetKlant(id);
+            GetKlantDTO? klant = await _service.GetKlant(id);
             if (klant == null) return KlantNotFoundMessage();
             return Ok(klant);
         }
 
         // POST api/<KlantenController>
         [HttpPost]
-        [ProducesResponseType(typeof(Klant), 200)]
-        public async Task <IActionResult> Post([FromBody] KlantInput input)
+        [ProducesResponseType(typeof(GetKlantDTO), 200)]
+        public async Task <IActionResult> Post([FromBody] CreateKlantDTO input)
         {
-            Klant? klant = await _service.CreateKlant(input);
+            GetKlantDTO? klant = await _service.CreateKlant(input);
             if (klant == null)
             {
                 return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");
@@ -58,18 +59,20 @@ namespace MasterclassApiTest.Controllers.v2
 
         // PUT api/<KlantenController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] KlantInput input)
+        [ProducesResponseType(typeof(GetKlantDTO), 200)]
+        public async Task<IActionResult> Put(int id, [FromBody] CreateKlantDTO input)
         {
-            Klant? klant = await _service.UpdateKlant(id, input);
+            GetKlantDTO? klant = await _service.UpdateKlant(id, input);
             if (klant == null) return KlantNotFoundMessage();
             return Ok(klant);
         }
 
         // DELETE api/<KlantenController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task<IActionResult> Delete(int id)
         {
-            Klant? klant = await _service.DeleteKlant(id);
+            GetKlantDTO? klant = await _service.DeleteKlant(id);
             if (klant == null) return KlantNotFoundMessage();
             return Ok(klant);
         }
