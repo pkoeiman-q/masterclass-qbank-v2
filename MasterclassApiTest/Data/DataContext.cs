@@ -1,5 +1,7 @@
-﻿using MasterclassApiTest.Entities;
+﻿using MasterclassApiTest.Data.Interceptor;
+using MasterclassApiTest.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace MasterclassApiTest.Data
 {
@@ -8,6 +10,11 @@ namespace MasterclassApiTest.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.AddInterceptors(new MyQueryInterceptor());
         }
 
         public DbSet<Klant> Klanten { get; set; }
