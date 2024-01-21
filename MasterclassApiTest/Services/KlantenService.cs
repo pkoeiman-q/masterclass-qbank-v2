@@ -2,7 +2,6 @@
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using MasterclassApiTest.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace MasterclassApiTest.Services
 {

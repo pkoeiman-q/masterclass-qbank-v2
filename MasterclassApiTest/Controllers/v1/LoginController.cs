@@ -1,7 +1,6 @@
 ﻿using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -39,7 +38,7 @@ namespace MasterclassApiTest.Controllers.v1
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JwtSettings:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, gebruiker.LoginNaam),

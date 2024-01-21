@@ -1,5 +1,4 @@
-﻿using MasterclassApiTest.Repositories;
-using MasterclassApiTest.Services;
+﻿using MasterclassApiTest.Services;
 
 namespace MasterclassApiTest.Data
 {
@@ -8,7 +7,8 @@ namespace MasterclassApiTest.Data
         private readonly DataContext _context;
         public KlantenService Klanten { get; }
         public GebruikersService Gebruikers { get; }
-        public UnitOfWork(DataContext context, KlantenService klantenService, GebruikersService gebruikersService) { 
+        public UnitOfWork(DataContext context, KlantenService klantenService, GebruikersService gebruikersService)
+        {
             _context = context;
             Klanten = klantenService;
             Gebruikers = gebruikersService;
@@ -28,7 +28,8 @@ namespace MasterclassApiTest.Data
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing) {
+            if (disposing)
+            {
                 _context.Dispose();
             }
         }

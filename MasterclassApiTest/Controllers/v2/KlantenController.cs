@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System;
-using System.Numerics;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using MasterclassApiTest.Entities;
-using MasterclassApiTest.Services;
+﻿using MasterclassApiTest.Data;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
-using MasterclassApiTest.Data;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,7 +43,7 @@ namespace MasterclassApiTest.Controllers.v2
         // POST api/<KlantenController>
         [HttpPost]
         [ProducesResponseType(typeof(GetKlantDTO), 200)]
-        public async Task <IActionResult> Post([FromBody] CreateKlantDTO input)
+        public async Task<IActionResult> Post([FromBody] CreateKlantDTO input)
         {
             GetKlantDTO? klant = await _unitOfWork.Klanten.CreateKlant(input);
             if (klant == null) return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");

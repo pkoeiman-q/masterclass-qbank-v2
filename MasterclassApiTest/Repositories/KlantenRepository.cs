@@ -3,7 +3,6 @@ using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
 
 namespace MasterclassApiTest.Repositories
 {
@@ -103,7 +102,7 @@ namespace MasterclassApiTest.Repositories
             return ConvertSingleToGetKlantDTO(klantToSave);
         }
 
-        public async Task<GetKlantDTO?> UpdateKlant (int id, CreateKlantDTO input)
+        public async Task<GetKlantDTO?> UpdateKlant(int id, CreateKlantDTO input)
         {
             Klant? klantToUpdate = await _context.Klanten.FindAsync(id);
             if (klantToUpdate == null)

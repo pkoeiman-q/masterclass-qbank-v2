@@ -1,5 +1,4 @@
 ﻿using MasterclassApiTest.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace MasterclassApiTest.Models
 {

@@ -1,5 +1,4 @@
-﻿using MasterclassApiTest.Data;
-using MasterclassApiTest.Repositories;
+﻿using MasterclassApiTest.Repositories;
 
 namespace MasterclassApiTest.Services
 {
