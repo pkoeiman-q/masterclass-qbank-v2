@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiUnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiIntegrationTests", "MasterclassApiIntegrationTests\MasterclassApiIntegrationTests.csproj", "{0D68A037-466C-44B3-B319-2A82A95FC98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassQBankMVC", "MasterclassQBankMVC\MasterclassQBankMVC.csproj", "{C1AFD6DD-AA06-4EE5-8B76-D8A0A7923808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassMVC", "MasterclassMVC\MasterclassMVC.csproj", "{D3BC3606-FEF9-4037-9757-11D4710174F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{0D68A037-466C-44B3-B319-2A82A95FC98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D68A037-466C-44B3-B319-2A82A95FC98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D68A037-466C-44B3-B319-2A82A95FC98C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1AFD6DD-AA06-4EE5-8B76-D8A0A7923808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1AFD6DD-AA06-4EE5-8B76-D8A0A7923808}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1AFD6DD-AA06-4EE5-8B76-D8A0A7923808}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1AFD6DD-AA06-4EE5-8B76-D8A0A7923808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
