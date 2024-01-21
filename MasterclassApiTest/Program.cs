@@ -99,8 +99,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 // Services/repositories
-builder.Services.AddScoped<KlantenRepository>();
-builder.Services.AddScoped<KlantenService>();
+builder.Services.AddTransient<GebruikersRepository>();
+builder.Services.AddTransient<GebruikersService>();
+builder.Services.AddTransient<KlantenRepository>();
+builder.Services.AddTransient<KlantenService>();
+builder.Services.AddTransient<UnitOfWork>();
 
 var app = builder.Build();
 

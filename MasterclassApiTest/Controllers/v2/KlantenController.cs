@@ -8,6 +8,7 @@ using MasterclassApiTest.Entities;
 using MasterclassApiTest.Services;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
+using MasterclassApiTest.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,10 +20,10 @@ namespace MasterclassApiTest.Controllers.v2
     [ApiVersion("2.0")]
     public class KlantenController : ControllerBase
     {
-        private readonly KlantenService _service;
-        public KlantenController(KlantenService service)
+        private readonly UnitOfWork _unitOfWork;
+        public KlantenController(UnitOfWork unitOfWork)
         {
-            _service = service;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/<KlantenController>
@@ -30,7 +31,8 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(List<GetKlantDTO>), 200)]
         public async Task<IActionResult> Get([FromQuery] KlantPageParameters klantPageParameters)
         {
-            List<GetKlantDTO> klanten = await _service.GetAllKlanten(klantPageParameters);
+            List<GetKlantDTO> klanten = await _unitOfWork.Klanten.GetAllKlanten(klantPageParameters);
+
             return Ok(klanten);
         }
 
@@ -39,8 +41,9 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task<IActionResult> Get(int id)
         {
-            GetKlantDTO? klant = await _service.GetKlant(id);
+            GetKlantDTO? klant = await _unitOfWork.Klanten.GetKlant(id);
             if (klant == null) return KlantNotFoundMessage();
+
             return Ok(klant);
         }
 
@@ -49,11 +52,10 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task <IActionResult> Post([FromBody] CreateKlantDTO input)
         {
-            GetKlantDTO? klant = await _service.CreateKlant(input);
-            if (klant == null)
-            {
-                return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");
-            }
+            GetKlantDTO? klant = await _unitOfWork.Klanten.CreateKlant(input);
+            if (klant == null) return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");
+
+            await _unitOfWork.Complete();
             return Ok(klant);
         }
 
@@ -62,8 +64,10 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task<IActionResult> Put(int id, [FromBody] CreateKlantDTO input)
         {
-            GetKlantDTO? klant = await _service.UpdateKlant(id, input);
+            GetKlantDTO? klant = await _unitOfWork.Klanten.UpdateKlant(id, input);
             if (klant == null) return KlantNotFoundMessage();
+
+            await _unitOfWork.Complete();
             return Ok(klant);
         }
 
@@ -72,8 +76,10 @@ namespace MasterclassApiTest.Controllers.v2
         [ProducesResponseType(typeof(GetKlantDTO), 200)]
         public async Task<IActionResult> Delete(int id)
         {
-            GetKlantDTO? klant = await _service.DeleteKlant(id);
+            GetKlantDTO? klant = await _unitOfWork.Klanten.DeleteKlant(id);
             if (klant == null) return KlantNotFoundMessage();
+
+            await _unitOfWork.Complete();
             return Ok(klant);
         }
 

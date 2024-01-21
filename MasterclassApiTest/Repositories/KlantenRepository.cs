@@ -31,7 +31,7 @@ namespace MasterclassApiTest.Repositories
             return list;
         }
 
-        public IQueryable<GetKlantDTO> GetKlantenAsDTO()
+        private IQueryable<GetKlantDTO> GetKlantenAsDTO()
         {
             var query = from klant in _context.Klanten
                         select new GetKlantDTO
@@ -49,7 +49,7 @@ namespace MasterclassApiTest.Repositories
             return query;
         }
 
-        public GetKlantDTO ConvertSingleToGetKlantDTO(Klant klant)
+        private GetKlantDTO ConvertSingleToGetKlantDTO(Klant klant)
         {
             GetKlantDTO klantDTO = new GetKlantDTO
             {
