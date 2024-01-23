@@ -1,4 +1,5 @@
 using MasterclassApiTest;
+using MasterclassApiTest.AutoMapperProfiles;
 using MasterclassApiTest.Data;
 using MasterclassApiTest.Filters;
 using MasterclassApiTest.Repositories;
@@ -103,6 +104,9 @@ builder.Services.AddTransient<KlantenService>();
 builder.Services.AddTransient<IRekeningenService, RekeningenService>();
 builder.Services.AddTransient<IRekeningenRepository, RekeningenRepository>();
 builder.Services.AddTransient<UnitOfWork>();
+
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMappingProfiles).Assembly);
 
 var app = builder.Build();
 
