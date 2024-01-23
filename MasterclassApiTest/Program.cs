@@ -100,6 +100,8 @@ builder.Services.AddTransient<GebruikersRepository>();
 builder.Services.AddTransient<GebruikersService>();
 builder.Services.AddTransient<KlantenRepository>();
 builder.Services.AddTransient<KlantenService>();
+builder.Services.AddTransient<IRekeningenService, RekeningenService>();
+builder.Services.AddTransient<IRekeningenRepository, RekeningenRepository>();
 builder.Services.AddTransient<UnitOfWork>();
 
 var app = builder.Build();

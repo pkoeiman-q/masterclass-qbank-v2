@@ -7,11 +7,14 @@ namespace MasterclassApiTest.Data
         private readonly DataContext _context;
         public KlantenService Klanten { get; }
         public GebruikersService Gebruikers { get; }
-        public UnitOfWork(DataContext context, KlantenService klantenService, GebruikersService gebruikersService)
+        public IRekeningenService Rekeningen { get; }
+
+        public UnitOfWork(DataContext context, KlantenService klantenService, GebruikersService gebruikersService, IRekeningenService rekeningenService)
         {
             _context = context;
             Klanten = klantenService;
             Gebruikers = gebruikersService;
+            Rekeningen = rekeningenService;
         }
 
         public async Task<int> Complete()

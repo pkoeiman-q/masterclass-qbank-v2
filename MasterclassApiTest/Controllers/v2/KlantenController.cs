@@ -82,27 +82,40 @@ namespace MasterclassApiTest.Controllers.v2
         }
 
         [HttpGet]
-        [Route("{id}/rekeningen")]
-        public IActionResult Rekeningen(int id)
+        [Route("{klantId}/rekeningen")]
+        public async Task<IActionResult> Rekeningen(int klantId)
         {
-            // TODO: implement
-            return Ok("TODO: laat alle rekeningen van de gegeven klant zien.");
+            List<RekeningDTO> rekeningen = await _unitOfWork.Rekeningen.GetRekeningen(klantId);
+            if (rekeningen.Count == 0)
+            {
+                return NotFound("Geen rekeningen gevonden met de gegeven klant ID.");
+            }
+            return Ok(rekeningen);
         }
 
         [HttpGet]
         [Route("{klantId}/rekeningen/{rekeningId}")]
-        public IActionResult Rekeningen(int klantId, string rekeningId)
+        public async Task<IActionResult> Rekeningen(int klantId, string rekeningId)
         {
-            // TODO: implement
-            return Ok("TODO: laat 1 rekening van de gegeven klant zien.");
+            RekeningDTO? rekening = await _unitOfWork.Rekeningen.GetSingleRekening(klantId, rekeningId);
+            if (rekening == null)
+            {
+                return NotFound("Geen rekening gevonden met de gegeven rekening ID.");
+            }
+            return Ok(rekening);
         }
 
-        [HttpPost]
-        [Route("{id}/rekeningen")]
-        public IActionResult CreateRekening(string id)
+        [HttpDelete]
+        [Route("{klantId}/rekeningen/{rekeningId}")]
+        public async Task<IActionResult> DeleteRekening(int klantId, string rekeningId)
         {
-            // TODO: implement
-            return Ok("TODO: maak een nieuwe rekening voor de gegeven klant aan.");
+            RekeningDTO? rekening = await _unitOfWork.Rekeningen.DeleteRekening(klantId, rekeningId);
+            if (rekening == null)
+            {
+                return StatusCode(500, "Iets is verkeerd gegaan tijdens het verwijderen van de rekening.");
+            }
+            await _unitOfWork.Complete();
+            return Ok(rekening);
         }
 
         //[HttpGet]
