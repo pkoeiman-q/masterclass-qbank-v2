@@ -3,16 +3,19 @@ using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace MasterclassApiTest.Repositories
 {
-    public class KlantenRepository
+    public class KlantenRepository : IKlantenRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public KlantenRepository(DataContext context)
+        public KlantenRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<PagedList<GetKlantDTO>> GetAllKlanten(KlantPageParameters klantPageParameters)
@@ -110,6 +113,7 @@ namespace MasterclassApiTest.Repositories
                 return null;
             }
 
+            /*
             klantToUpdate.LoginNaam = input.LoginNaam;
             klantToUpdate.DisplayNaam = input.LoginNaam;
             klantToUpdate.Voorletters = input.Voorletters;
@@ -120,7 +124,9 @@ namespace MasterclassApiTest.Repositories
             klantToUpdate.Adres = input.Adres;
             klantToUpdate.Bsn = input.Bsn;
             klantToUpdate.TelefoonNummer = input.TelefoonNummer;
-            klantToUpdate.Email = input.Email;
+            klantToUpdate.Email = input.Email;*/
+
+            klantToUpdate = _mapper.Map<CreateKlantDTO, Klant>(input);
 
             await _context.SaveChangesAsync();
             return ConvertSingleToGetKlantDTO(klantToUpdate);

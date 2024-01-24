@@ -5,11 +5,11 @@ namespace MasterclassApiTest.Data
     public class UnitOfWork : IDisposable
     {
         private readonly DataContext _context;
-        public KlantenService Klanten { get; }
+        public IKlantenService Klanten { get; }
         public GebruikersService Gebruikers { get; }
         public IRekeningenService Rekeningen { get; }
 
-        public UnitOfWork(DataContext context, KlantenService klantenService, GebruikersService gebruikersService, IRekeningenService rekeningenService)
+        public UnitOfWork(DataContext context, IKlantenService klantenService, GebruikersService gebruikersService, IRekeningenService rekeningenService)
         {
             _context = context;
             Klanten = klantenService;

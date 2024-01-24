@@ -5,10 +5,10 @@ using MasterclassApiTest.Repositories;
 
 namespace MasterclassApiTest.Services
 {
-    public class KlantenService
+    public class KlantenService : IKlantenService
     {
-        private readonly KlantenRepository _repository;
-        public KlantenService(KlantenRepository repository)
+        private readonly IKlantenRepository _repository;
+        public KlantenService(IKlantenRepository repository)
         {
             _repository = repository;
         }
