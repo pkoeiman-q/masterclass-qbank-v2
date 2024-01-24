@@ -1,4 +1,4 @@
-﻿using MasterclassApiTest.Data;
+using MasterclassApiTest.Data;
 using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
@@ -72,7 +72,7 @@ namespace MasterclassApiTest.Repositories
         public async Task<GetKlantDTO?> GetKlant(int id)
         {
             var query = GetKlantenAsDTO();
-            var klant = await query.SingleAsync(k => k.Id == id);
+            var klant = await query.SingleOrDefaultAsync(k => k.Id == id);
             return klant;
         }
 

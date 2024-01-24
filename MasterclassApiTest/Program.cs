@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -99,7 +100,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 // Services/repositories
 builder.Services.AddTransient<GebruikersRepository>();
 builder.Services.AddTransient<GebruikersService>();
-builder.Services.AddTransient<IKlantenRepository, KlantenRepository>();
+builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
+builder.Services.AddTransient<KlantenRepository>();
+builder.Services.AddTransient<IKlantenRepository, CachedKlantenRepository>();
 builder.Services.AddTransient<IKlantenService, KlantenService>();
 builder.Services.AddTransient<IRekeningenRepository, RekeningenRepository>();
 builder.Services.AddTransient<IRekeningenService, RekeningenService>();
