@@ -12,6 +12,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -100,10 +101,17 @@ builder.Services.AddDbContext<DataContext>(options =>
 // Services/repositories
 builder.Services.AddTransient<GebruikersRepository>();
 builder.Services.AddTransient<GebruikersService>();
+
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 builder.Services.AddTransient<KlantenRepository>();
 builder.Services.AddTransient<IKlantenRepository, CachedKlantenRepository>();
 builder.Services.AddTransient<IKlantenService, KlantenService>();
+builder.Services.AddStackExchangeRedisCache(redisOptions =>
+{
+    string connection = builder.Configuration.GetConnectionString("Redis");
+    redisOptions.Configuration = connection;
+});
+
 builder.Services.AddTransient<IRekeningenRepository, RekeningenRepository>();
 builder.Services.AddTransient<IRekeningenService, RekeningenService>();
 builder.Services.AddTransient<UnitOfWork>();
