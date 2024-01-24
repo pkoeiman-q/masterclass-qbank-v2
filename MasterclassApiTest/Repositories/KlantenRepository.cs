@@ -1,9 +1,10 @@
-using MasterclassApiTest.Data;
+﻿using MasterclassApiTest.Data;
 using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using System.Numerics;
 
 namespace MasterclassApiTest.Repositories
 {
@@ -53,19 +54,7 @@ namespace MasterclassApiTest.Repositories
 
         private GetKlantDTO ConvertSingleToGetKlantDTO(Klant klant)
         {
-            GetKlantDTO klantDTO = new GetKlantDTO
-            {
-                Achternaam = klant.Achternaam,
-                Adres = klant.Adres,
-                Email = klant.Email,
-                GeboorteDatum = klant.GeboorteDatum,
-                Geslacht = klant.Geslacht,
-                Id = klant.Id,
-                OverlijdensDatum = klant.OverlijdensDatum,
-                TelefoonNummer = klant.TelefoonNummer,
-                Voorletters = klant.Voorletters,
-            };
-
+            GetKlantDTO klantDTO = _mapper.Map<GetKlantDTO>(klant);
             return klantDTO;
         }
 
@@ -78,21 +67,7 @@ namespace MasterclassApiTest.Repositories
 
         private Klant CreateKlantFromInput(CreateKlantDTO input)
         {
-            Klant klantToSave = new Klant
-            {
-                LoginNaam = input.LoginNaam,
-                LaatstIngelogd = DateTime.Now,
-                DisplayNaam = input.LoginNaam,
-                Voorletters = input.Voorletters,
-                Achternaam = input.Achternaam,
-                Geslacht = input.Geslacht,
-                GeboorteDatum = input.GeboorteDatum,
-                OverlijdensDatum = input.OverlijdensDatum,
-                Adres = input.Adres,
-                Bsn = input.Bsn,
-                TelefoonNummer = input.TelefoonNummer,
-                Email = input.Email,
-            };
+            Klant klantToSave = _mapper.Map<Klant>(input);
             return klantToSave;
         }
 
@@ -113,7 +88,7 @@ namespace MasterclassApiTest.Repositories
                 return null;
             }
 
-            /*
+            // AutoMapper doesn't work with the change tracker here
             klantToUpdate.LoginNaam = input.LoginNaam;
             klantToUpdate.DisplayNaam = input.LoginNaam;
             klantToUpdate.Voorletters = input.Voorletters;
@@ -124,9 +99,7 @@ namespace MasterclassApiTest.Repositories
             klantToUpdate.Adres = input.Adres;
             klantToUpdate.Bsn = input.Bsn;
             klantToUpdate.TelefoonNummer = input.TelefoonNummer;
-            klantToUpdate.Email = input.Email;*/
-
-            klantToUpdate = _mapper.Map<CreateKlantDTO, Klant>(input);
+            klantToUpdate.Email = input.Email;
 
             await _context.SaveChangesAsync();
             return ConvertSingleToGetKlantDTO(klantToUpdate);
