@@ -7,9 +7,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MasterclassApiTest.Controllers.v1
+namespace MasterclassApiTest.Controllers.v2
 {
     [Route("api/[controller]")]
+    [ApiVersion("2.0")]
     [ApiController]
     public class LoginController : ControllerBase
     {

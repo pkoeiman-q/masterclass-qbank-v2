@@ -1,4 +1,4 @@
-﻿using Azure;
+using Azure;
 using MasterclassApiTest.Entities;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
@@ -22,7 +22,7 @@ namespace MasterclassMVC.Controllers
         {
             _config = config;
             _apiClient = new HttpClient();
-            _apiClient.DefaultRequestHeaders.Add("Accept", "application/json;x-api-version=2.0");
+            _apiClient.DefaultRequestHeaders.Add("X-Api-Version", "2.0");
             _apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_config.GetValue<string>("ApiJwtToken")}");
         }
 
