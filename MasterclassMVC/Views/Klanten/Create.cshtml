@@ -5,26 +5,30 @@
 }
 
 @model MasterclassApiTest.Models.CreateKlantDTO;
-
 <h1 align="center">Klant aanmaken</h1>
 <br />
 <form method="post" action="create">
     <h3 align="center">Accountgegevens</h3>
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label for="">Klant loginnaam</label>
         <input type="text" class="form-control" asp-for="LoginNaam">
+        <span asp-validation-for="LoginNaam" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Klant wachtwoord</label>
         <input type="password" class="form-control" asp-for="Wachtwoord">
+        <span asp-validation-for="Wachtwoord" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Klant e-mailadres</label>
         <input type="email" class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Display naam</label>
         <input type="text" class="form-control" asp-for="DisplayNaam">
+        <span asp-validation-for="DisplayNaam" class="text-danger"></span>
     </div>
     <br />
 
@@ -32,10 +36,12 @@
     <div class="form-group">
         <label for="">Voorletters</label>
         <input type="text" class="form-control" asp-for="Voorletters">
+        <span asp-validation-for="Voorletters" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Achternaam</label>
         <input type="text" class="form-control" asp-for="Achternaam">
+        <span asp-validation-for="Achternaam" class="text-danger"></span>
     </div>
     Geslacht
     <select asp-for="Geslacht" class="form-select" aria-label="Default select example">
@@ -47,10 +53,12 @@
     <div class="form-group">
         <label for="">Geboortedatum</label>
         <input type="date" class="form-control" asp-for="GeboorteDatum">
+        <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Telefoon nr.</label>
         <input type="text" class="form-control" asp-for="TelefoonNummer">
+        <span asp-validation-for="TelefoonNummer" class="text-danger"></span>
     </div>
     <br />
 
@@ -58,18 +66,22 @@
     <div class="form-group">
         <label for="">Straat</label>
         <input type="text" class="form-control" asp-for="Adres.Straat">
+        <span asp-validation-for="Adres.Straat" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Woonplaats</label>
         <input type="text" class="form-control" asp-for="Adres.Woonplaats">
+        <span asp-validation-for="Adres.Woonplaats" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Postcode</label>
         <input type="text" class="form-control" asp-for="Adres.Postcode">
+        <span asp-validation-for="Adres.Postcode" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="">Huisnummer</label>
         <input type="number" class="form-control" asp-for="Adres.Huisnummer">
+        <span asp-validation-for="Adres.Huisnummer" class="text-danger"></span>
     </div>
     <br />
 

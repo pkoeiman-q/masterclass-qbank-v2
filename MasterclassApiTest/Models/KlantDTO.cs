@@ -1,4 +1,5 @@
 ﻿using MasterclassApiTest.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace MasterclassApiTest.Models
 {
@@ -9,6 +10,7 @@ namespace MasterclassApiTest.Models
         public string Wachtwoord { get; set; }
         public string Email { get; set; }
         public DateTime LaatstIngelogd { get; set; }
+        [StringLength (30, ErrorMessage = "{0} mag niet meer dan {1} of minder dan {2} karakters bevatten.", MinimumLength = 3)]
         public string DisplayNaam { get; set; }
 
         // Klant info

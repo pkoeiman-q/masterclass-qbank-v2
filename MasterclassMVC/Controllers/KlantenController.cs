@@ -41,6 +41,11 @@ namespace MasterclassMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateKlantDTO createKlantDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(createKlantDTO);
+            }
+
             var response = await _apiClient.PostAsJsonAsync(_klantUri, createKlantDTO);
             if (response.IsSuccessStatusCode)
             {
