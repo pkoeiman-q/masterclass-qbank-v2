@@ -6,6 +6,7 @@ using MasterclassApiTest.Pagination;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 
@@ -34,9 +35,28 @@ namespace MasterclassApiTest.Repositories
         private async Task<string?> GetKlantFromCacheById(int id)
         {
             string key = RedisKey(id);
-            string? cachedKlant = await _distributedCache.GetStringAsync(
-                key);
-            return cachedKlant;
+            try
+            {
+                return await _distributedCache.GetStringAsync(key);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Tried to READ from Redis cache with {key}, but ran into an error:\n{ex.Message}");
+                return null;
+            }
+        }
+
+        private async void SetKlantInCache(GetKlantDTO klantObject)
+        {
+            string key = RedisKey(klantObject.Id);
+            try
+            {
+                await _distributedCache.SetStringAsync(key, JsonConvert.SerializeObject(klantObject));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Tried to WRITE to Redis cache with {key}, but ran into an error:\n{ex.Message}");
+            }
         }
 
         // CREATE
@@ -45,11 +65,7 @@ namespace MasterclassApiTest.Repositories
             GetKlantDTO createdKlant = await _decorated.CreateKlant(input);
 
             // Update the cache to include/overwrite the klant there
-            string key = RedisKey(createdKlant.Id);
-            await _distributedCache.SetStringAsync(
-                key,
-                JsonConvert.SerializeObject(createdKlant)
-            );
+            SetKlantInCache(createdKlant);
 
             return createdKlant;
         }
@@ -82,21 +98,17 @@ namespace MasterclassApiTest.Repositories
             string? cachedKlant = await GetKlantFromCacheById(id);
 
             // If the klant wasn't found in the cache...
-            // Cache the klant and return it
             GetKlantDTO? klant;
             if (string.IsNullOrEmpty(cachedKlant))
             {
                 // Get the requested klant
                 // Return null if not found
                 klant = await _decorated.GetKlant(id);
-                if (klant == null) return klant;
-
-                // Return serialized klant if it is found
-                await _distributedCache.SetStringAsync(
-                    key,
-                    JsonConvert.SerializeObject(klant)
-                );
-
+                if (klant != null)
+                {
+                    // Cache the Klant and return it
+                    SetKlantInCache(klant);
+                }
                 return klant;
             }
 
@@ -118,12 +130,7 @@ namespace MasterclassApiTest.Repositories
             GetKlantDTO? updatedKlant = await _decorated.UpdateKlant(id, input);
 
             // Update the cache to include/overwrite the klant there
-            string key = RedisKey(id);
-            await _distributedCache.SetStringAsync(
-                key,
-                JsonConvert.SerializeObject(updatedKlant)
-            );
-
+            if (updatedKlant != null) SetKlantInCache(updatedKlant);
             return updatedKlant;
         }
 
@@ -132,12 +139,7 @@ namespace MasterclassApiTest.Repositories
             GetKlantDTO? updatedKlant = await _decorated.UpdateKlant(id, input);
 
             // Update the cache to include/overwrite the klant there
-            string key = RedisKey(id);
-            await _distributedCache.SetStringAsync(
-                key,
-                JsonConvert.SerializeObject(updatedKlant)
-            );
-
+            if (updatedKlant != null) SetKlantInCache(updatedKlant);
             return updatedKlant;
         }
     }
