@@ -1,6 +1,7 @@
 ﻿using MasterclassApiTest.Data;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,6 +12,7 @@ namespace MasterclassApiTest.Controllers.v2
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
+    [Authorize]
     public class KlantenController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
