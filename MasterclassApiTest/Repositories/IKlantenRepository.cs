@@ -10,5 +10,6 @@ namespace MasterclassApiTest.Repositories
         Task<PagedList<GetKlantDTO>> GetAllKlanten(KlantPageParameters klantPageParameters);
         Task<GetKlantDTO?> GetKlant(int id);
         Task<GetKlantDTO?> UpdateKlant(int id, CreateKlantDTO input);
+        Task<GetKlantDTO?> UpdateKlant(int id, GetKlantDTO input);
     }
 }

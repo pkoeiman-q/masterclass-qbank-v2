@@ -10,5 +10,6 @@ namespace MasterclassApiTest.Services
         Task<List<GetKlantDTO>> GetAllKlanten(KlantPageParameters klantPageParameters);
         Task<GetKlantDTO?> GetKlant(int id);
         Task<GetKlantDTO?> UpdateKlant(int id, CreateKlantDTO input);
+        Task<GetKlantDTO?> UpdateKlant(int id, GetKlantDTO input);
     }
 }

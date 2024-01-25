@@ -105,6 +105,28 @@ namespace MasterclassApiTest.Repositories
             return ConvertSingleToGetKlantDTO(klantToUpdate);
         }
 
+        public async Task<GetKlantDTO?> UpdateKlant(int id, GetKlantDTO input)
+        {
+            Klant? klantToUpdate = await _context.Klanten.FindAsync(id);
+            if (klantToUpdate == null)
+            {
+                return null;
+            }
+
+            // AutoMapper doesn't work with the change tracker here
+            klantToUpdate.Voorletters = input.Voorletters;
+            klantToUpdate.Achternaam = input.Achternaam;
+            klantToUpdate.Geslacht = input.Geslacht;
+            klantToUpdate.GeboorteDatum = input.GeboorteDatum;
+            klantToUpdate.OverlijdensDatum = input.OverlijdensDatum;
+            klantToUpdate.Adres = input.Adres;
+            klantToUpdate.TelefoonNummer = input.TelefoonNummer;
+            klantToUpdate.Email = input.Email;
+
+            await _context.SaveChangesAsync();
+            return ConvertSingleToGetKlantDTO(klantToUpdate);
+        }
+
         public async Task<GetKlantDTO?> DeleteKlant(int id)
         {
             Klant? klantToDelete = await _context.Klanten.FindAsync(id);

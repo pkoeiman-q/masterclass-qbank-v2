@@ -64,6 +64,18 @@ namespace MasterclassApiTest.Controllers.v2
             return Ok(klant);
         }
 
+        [HttpPut]
+        [Route("{klantId}/mvc")]
+        [ProducesResponseType(typeof(GetKlantDTO), 200)]
+        public async Task<IActionResult> Put(int klantId, [FromBody] GetKlantDTO input)
+        {
+            GetKlantDTO? klant = await _unitOfWork.Klanten.UpdateKlant(klantId, input);
+            if (klant == null) return KlantNotFoundMessage();
+
+            await _unitOfWork.Complete();
+            return Ok(klant);
+        }
+
         // DELETE api/<KlantenController>/5
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(GetKlantDTO), 200)]

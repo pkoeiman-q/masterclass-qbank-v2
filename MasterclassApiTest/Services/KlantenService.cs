@@ -21,6 +21,8 @@ namespace MasterclassApiTest.Services
 
         public async Task<GetKlantDTO?> UpdateKlant(int id, CreateKlantDTO input) => await _repository.UpdateKlant(id, input);
 
+        public async Task<GetKlantDTO?> UpdateKlant(int id, GetKlantDTO input) => await _repository.UpdateKlant(id, input);
+
         public async Task<GetKlantDTO?> DeleteKlant(int id) => await _repository.DeleteKlant(id);
 
         static public List<Klant> ZoekKlant(List<Klant> klantList, string searchType, string searchTerm)

@@ -126,5 +126,19 @@ namespace MasterclassApiTest.Repositories
 
             return updatedKlant;
         }
+
+        public async Task<GetKlantDTO?> UpdateKlant(int id, GetKlantDTO input)
+        {
+            GetKlantDTO? updatedKlant = await _decorated.UpdateKlant(id, input);
+
+            // Update the cache to include/overwrite the klant there
+            string key = RedisKey(id);
+            await _distributedCache.SetStringAsync(
+                key,
+                JsonConvert.SerializeObject(updatedKlant)
+            );
+
+            return updatedKlant;
+        }
     }
 }
