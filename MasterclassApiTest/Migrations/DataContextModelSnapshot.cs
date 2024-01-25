@@ -112,7 +112,7 @@ namespace MasterclassApiTest.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Klanten");
+                    b.ToTable("Klanten", (string)null);
                 });
 
             modelBuilder.Entity("MasterclassApiTest.Entities.Medewerker", b =>
@@ -156,7 +156,7 @@ namespace MasterclassApiTest.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Medewerkers");
+                    b.ToTable("Medewerkers", (string)null);
                 });
 
             modelBuilder.Entity("MasterclassApiTest.Entities.Overboeking", b =>
@@ -183,7 +183,7 @@ namespace MasterclassApiTest.Migrations
 
                     b.HasKey("VolgNummer");
 
-                    b.ToTable("Overboekingen");
+                    b.ToTable("Overboekingen", (string)null);
                 });
 
             modelBuilder.Entity("MasterclassApiTest.Entities.Rekening", b =>
@@ -213,7 +213,7 @@ namespace MasterclassApiTest.Migrations
 
                     b.HasIndex("KlantNummer");
 
-                    b.ToTable("Rekeningen");
+                    b.ToTable("Rekeningen", (string)null);
                 });
 
             modelBuilder.Entity("MasterclassApiTest.Entities.Rekening", b =>
