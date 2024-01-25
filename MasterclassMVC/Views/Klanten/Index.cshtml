@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<MasterclassApiTest.Models.GetKlantDTO>;
+<h1>Klant overzicht</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Klantnummer</th>
+            <th>Naam</th>
+            <th>Geslacht</th>
+            <th>Geboortedatum</th>
+            <th>Overlijdensdatum</th>
+            <th>Adres</th>
+            <th>Telefoon nr.</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var k in Model)
+        {
+            <tr>
+                <td>@k.Id</td>
+                <td>@k.Voorletters @k.Achternaam</td>
+                <td>@k.Geslacht</td>
+                <td>@k.GeboorteDatum</td>
+                <td>@k.OverlijdensDatum</td>
+                <td>@k.Adres.Woonplaats</td>
+                <td>@k.TelefoonNummer</td>
+                <td>@k.Email</td>
+                <td><a asp-controller="klanten" asp-action="update" asp-route-id="@k.Id">Update</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiUnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiIntegrationTests", "MasterclassApiIntegrationTests\MasterclassApiIntegrationTests.csproj", "{0D68A037-466C-44B3-B319-2A82A95FC98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassMVC", "MasterclassMVC\MasterclassMVC.csproj", "{D3BC3606-FEF9-4037-9757-11D4710174F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassMVC", "MasterclassMVC\MasterclassMVC.csproj", "{D3BC3606-FEF9-4037-9757-11D4710174F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
