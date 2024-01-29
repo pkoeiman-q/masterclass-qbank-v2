@@ -3,6 +3,7 @@ using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,9 +17,12 @@ namespace MasterclassApiTest.Controllers.v2
     public class KlantenController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
-        public KlantenController(UnitOfWork unitOfWork)
+        private readonly ILogger<KlantenController> _logger;
+
+        public KlantenController(UnitOfWork unitOfWork, ILogger<KlantenController> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         // GET: api/<KlantenController>
@@ -39,6 +43,7 @@ namespace MasterclassApiTest.Controllers.v2
             GetKlantDTO? klant = await _unitOfWork.Klanten.GetKlant(id);
             if (klant == null) return KlantNotFoundMessage();
 
+            Log.Information("Opgevraagde klant: {@klant}", klant);
             return Ok(klant);
         }
 
