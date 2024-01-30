@@ -1,4 +1,6 @@
 ﻿using MasterclassApiTest.Data;
+using MasterclassApiTest.Entities;
+using MasterclassApiTest.Exceptions;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +43,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Get(int id)
         {
             GetKlantDTO? klant = await _unitOfWork.Klanten.GetKlant(id);
-            if (klant == null) return KlantNotFoundMessage();
+            if (klant == null) throw new KlantNotFoundException(id);
 
             Log.Information("Opgevraagde klant: {@klant}", klant);
             return Ok(klant);
@@ -65,7 +67,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Put(int id, [FromBody] CreateKlantDTO input)
         {
             GetKlantDTO? klant = await _unitOfWork.Klanten.UpdateKlant(id, input);
-            if (klant == null) return KlantNotFoundMessage();
+            if (klant == null) throw new KlantNotFoundException(id);
 
             await _unitOfWork.Complete();
             return Ok(klant);
@@ -77,7 +79,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Put(int klantId, [FromBody] GetKlantDTO input)
         {
             GetKlantDTO? klant = await _unitOfWork.Klanten.UpdateKlant(klantId, input);
-            if (klant == null) return KlantNotFoundMessage();
+            if (klant == null) throw new KlantNotFoundException(klantId);
 
             await _unitOfWork.Complete();
             return Ok(klant);
@@ -89,7 +91,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Delete(int id)
         {
             GetKlantDTO? klant = await _unitOfWork.Klanten.DeleteKlant(id);
-            if (klant == null) return KlantNotFoundMessage();
+            if (klant == null) throw new KlantNotFoundException(id);
 
             await _unitOfWork.Complete();
             return Ok(klant);
@@ -105,10 +107,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Rekeningen(int klantId)
         {
             List<RekeningDTO> rekeningen = await _unitOfWork.Rekeningen.GetRekeningen(klantId);
-            if (rekeningen.Count == 0)
-            {
-                return NotFound("Geen rekeningen gevonden met de gegeven klant ID.");
-            }
+            if (rekeningen.Count == 0) throw new RekeningNotFoundException($"Geen rekeningen gevonden met de gegeven klant ID ({klantId}).");
             return Ok(rekeningen);
         }
 
@@ -117,10 +116,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> Rekeningen(int klantId, string rekeningId)
         {
             RekeningDTO? rekening = await _unitOfWork.Rekeningen.GetSingleRekening(klantId, rekeningId);
-            if (rekening == null)
-            {
-                return NotFound("Geen rekening gevonden met de gegeven rekening ID.");
-            }
+            if (rekening == null) throw new RekeningNotFoundException(klantId, rekeningId);
             return Ok(rekening);
         }
 
@@ -129,10 +125,7 @@ namespace MasterclassApiTest.Controllers.v2
         public async Task<IActionResult> DeleteRekening(int klantId, string rekeningId)
         {
             RekeningDTO? rekening = await _unitOfWork.Rekeningen.DeleteRekening(klantId, rekeningId);
-            if (rekening == null)
-            {
-                return StatusCode(500, "Iets is verkeerd gegaan tijdens het verwijderen van de rekening.");
-            }
+            if (rekening == null) throw new RekeningNotFoundException(klantId, rekeningId);
             await _unitOfWork.Complete();
             return Ok(rekening);
         }

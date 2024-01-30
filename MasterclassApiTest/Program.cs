@@ -47,6 +47,7 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ResponseTimeFilter());
+    options.Filters.Add(new NotFoundFilterAttribute());
 });
 
 // Add API versioning
