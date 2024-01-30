@@ -108,8 +108,9 @@ builder.Services.AddTransient<GebruikersRepository>();
 builder.Services.AddTransient<GebruikersService>();
 
 builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
-builder.Services.AddTransient<KlantenRepository>();
-builder.Services.AddTransient<IKlantenRepository, CachedKlantenRepository>();
+//builder.Services.AddTransient<KlantenRepository>();
+//builder.Services.AddTransient<IKlantenRepository, CachedKlantenRepository>();
+builder.Services.AddTransient<IKlantenRepository, KlantenRepository>();
 builder.Services.AddTransient<IKlantenService, KlantenService>();
 builder.Services.AddStackExchangeRedisCache(redisOptions =>
 {
