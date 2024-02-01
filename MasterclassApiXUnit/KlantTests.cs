@@ -1,66 +1,37 @@
-using MasterclassApiTest.Controllers;
+using AutoFixture;
+using FakeItEasy;
+using FluentAssertions;
+using MasterclassApiTest.Controllers.v2;
+using MasterclassApiTest.Data;
 using MasterclassApiTest.Entities;
+using MasterclassApiTest.Fixtures;
+using MasterclassApiTest.Pagination;
+using MasterclassApiTest.Repositories;
+using MasterclassApiTest.Services;
+using Microsoft.AspNetCore.Mvc;
+using NSubstitute;
 
 namespace MasterclassApiUnitTests
 {
     public class KlantTests
     {
-        //[Theory]
-        //[InlineData("displaynaam", "display")]
-        //[InlineData("achternaam", "achter")]
-        //[InlineData("straat", "straat")]
-        //[InlineData("woonplaats", "woonplaats")]
-        //[InlineData("email", "foo@bar.com")]
-        //public void ZoekKlantSucces(string searchType, string searchTerm)
-        //{
-        //    // Arrange
-        //    List<Klant> klanten = GenereerKlantLijst();
+        [Fact]
+        public async void Get_Klanten_Returns_List_Of_Klanten_When_Called()
+        {
+            // Arrange
+            var fixture = new KlantenControllerFixture();
+            
+            // Act
+            var pageParams = new KlantPageParameters
+            {
+                PageNumber = 1,
+                PageSize = 10,
+            };
+            var result = await fixture.Sut.Get(pageParams);
 
-        //    // Act
-        //    List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, searchType, searchTerm);
-
-        //    // Assert
-        //    Assert.Single(gevondenKlanten);
-        //}
-
-        //[Fact]
-        //public void ZoekKlantFail()
-        //{
-        //    // Arrange
-        //    List<Klant> klanten = GenereerKlantLijst();
-
-        //    // Act
-        //    List<Klant> gevondenKlanten = Klant.ZoekKlant(klanten, "displaynaam", "Fake data");
-
-        //    // Assert
-        //    Assert.Empty(gevondenKlanten);
-        //}
-
-        //public List<Klant> GenereerKlantLijst()
-        //{
-        //    List<Klant> klanten = new List<Klant>();
-        //    Klant dummyKlantA = new Klant
-        //    {
-        //        KlantNummer = klanten.Count(),
-        //        LoginNaam = "login",
-        //        LaatstIngelogd = DateTime.UnixEpoch,
-        //        DisplayNaam = "display",
-        //        Voorletters = "voor",
-        //        Achternaam = "achter",
-        //        Geslacht = "Man",
-        //        GeboorteDatum = DateTime.UnixEpoch,
-        //        OverlijdensDatum = null,
-        //        Straat = "straat",
-        //        Huisnummer = 1,
-        //        HuisnummerToevoeging = null,
-        //        Postcode = "1234AB",
-        //        Woonplaats = "woonplaats",
-        //        Bsn = 1,
-        //        TelefoonNummer = "06-12345678",
-        //        Email = "foo@bar.com",
-        //    };
-        //    klanten.Add(dummyKlantA);
-        //    return klanten;
-        //}
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<OkObjectResult>();
+        }
     }
 }
