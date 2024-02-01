@@ -18,13 +18,11 @@ namespace MasterclassApiTest.Controllers.v2
     [Authorize]
     public class KlantenController : ControllerBase
     {
-        private readonly UnitOfWork _unitOfWork;
-        private readonly ILogger<KlantenController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public KlantenController(UnitOfWork unitOfWork, ILogger<KlantenController> logger)
+        public KlantenController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;
         }
 
         // GET: api/<KlantenController>

@@ -2,7 +2,7 @@
 
 namespace MasterclassApiTest.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
         public IKlantenService Klanten { get; }

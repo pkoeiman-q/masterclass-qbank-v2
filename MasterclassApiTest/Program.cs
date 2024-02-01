@@ -120,7 +120,7 @@ builder.Services.AddStackExchangeRedisCache(redisOptions =>
 
 builder.Services.AddTransient<IRekeningenRepository, RekeningenRepository>();
 builder.Services.AddTransient<IRekeningenService, RekeningenService>();
-builder.Services.AddTransient<UnitOfWork>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMappingProfiles).Assembly);
