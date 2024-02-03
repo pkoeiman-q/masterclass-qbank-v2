@@ -17,8 +17,5 @@ namespace MasterclassApiTest.Entities
         public DateTime LaatstIngelogd { get; set; }
         public UserAccessRole Role { get; set; } = UserAccessRole.Klant;
         public string DisplayNaam { get; set; }
-
-        [Timestamp]
-        public byte[] Version { get; set; }
     }
 }
