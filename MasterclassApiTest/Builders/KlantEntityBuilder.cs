@@ -46,8 +46,8 @@ namespace MasterclassApiTest.Builders
                     Woonplaats = "Den Haag",
                 },
                 TelefoonNummer = "06-12345678",
-                Wachtwoord = "Open sesame"
-            };
+                Wachtwoord = "Open sesame",
+        };
             return klant;
         }
 
@@ -64,7 +64,28 @@ namespace MasterclassApiTest.Builders
                 Geslacht = klant.Geslacht,
                 OverlijdensDatum = klant.OverlijdensDatum,
                 Adres = klant.Adres,
-                TelefoonNummer = klant.TelefoonNummer
+                TelefoonNummer = klant.TelefoonNummer,
+            };
+            return dto;
+        }
+
+        public CreateKlantDTO BuildCreateKlantDTO()
+        {
+            Klant klant = Build();
+            CreateKlantDTO dto = new CreateKlantDTO()
+            {
+                Achternaam = klant.Achternaam,
+                Email = klant.Email,
+                Adres = klant.Adres,
+                GeboorteDatum = klant.GeboorteDatum,
+                Geslacht = klant.Geslacht,
+                OverlijdensDatum = klant.OverlijdensDatum,
+                TelefoonNummer = klant.TelefoonNummer,
+                Voorletters = klant.Voorletters,
+                Bsn = klant.Bsn,
+                DisplayNaam = klant.DisplayNaam,
+                LoginNaam = klant.LoginNaam,
+                Wachtwoord = klant.Wachtwoord,
             };
             return dto;
         }
