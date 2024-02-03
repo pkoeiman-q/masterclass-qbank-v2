@@ -1,109 +1,121 @@
-﻿using MasterclassApiTest.Entities;
+﻿using FluentAssertions;
+using MasterclassApiTest.Fixtures;
+using MasterclassApiTest.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MasterclassApiUnitTests
 {
     public class KlantControllerTests
     {
-    //    // Get all customers
-    //    [Fact]
-    //    public void KlantenControllerGet()
-    //    {
-    //        // Arrange
-    //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+        [Fact]
+        public async void Get_Klanten_Returns_List_Of_Klanten_When_Called()
+        {
+            // Arrange
+            var fixture = new KlantenControllerFixture();
 
-    //        // Act
-    //        var result = klantController.Get();
+            // Act
+            var pageParams = fixture.PageParams;
+            var result = await fixture.Sut.Get(pageParams);
+            var list = (result as OkObjectResult).Value;
 
-    //        // Assert
-    //        var okObject = Assert.IsType<OkObjectResult>(result);
-    //        Assert.Contains("Geen klanten gevonden (lijstgrootte is 0)", (string) okObject.Value);
-    //    }
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<OkObjectResult>();
+            list.Should().BeOfType<List<GetKlantDTO>>();
+        }
 
-    //    [Fact]
-    //    public void KlantenControllerPost()
-    //    {
-    //        // Arrange
-    //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+        //    // Get all customers
+        //    [Fact]
+        //    public void KlantenControllerGet()
+        //    {
+        //        // Arrange
+        //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
 
-    //        // Act
-    //        var klant = GenereerKlant();
-    //        var result = klantController.Post(klant);
+        //        // Act
+        //        var result = klantController.Get();
 
-    //        // Assert
-    //        var okObject = Assert.IsType<OkObjectResult>(result);
-    //        var responseKlant = Assert.IsType<Klant>(okObject.Value);
-    //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
-    //    }
+        //        // Assert
+        //        var okObject = Assert.IsType<OkObjectResult>(result);
+        //        Assert.Contains("Geen klanten gevonden (lijstgrootte is 0)", (string) okObject.Value);
+        //    }
 
-    //    [Fact]
-    //    public void KlantenControllerPostAndGetThePostedKlant()
-    //    {
-    //        // Arrange
-    //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+        //    [Fact]
+        //    public void KlantenControllerPost()
+        //    {
+        //        // Arrange
+        //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
 
-    //        // Act
-    //        var klant = GenereerKlant();
-    //        klantController.Post(klant);
-    //        var result = klantController.Get();
+        //        // Act
+        //        var klant = GenereerKlant();
+        //        var result = klantController.Post(klant);
 
-    //        // Assert
-    //        var okObject = Assert.IsType<OkObjectResult>(result);
-    //        var responseKlanten = Assert.IsType<List<Klant>>(okObject.Value);
-    //        var responseKlant = responseKlanten.First();
-    //        Assert.Single(responseKlanten);
-    //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
-    //    }
+        //        // Assert
+        //        var okObject = Assert.IsType<OkObjectResult>(result);
+        //        var responseKlant = Assert.IsType<Klant>(okObject.Value);
+        //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
+        //    }
 
-    //    [Fact]
-    //    public void KlantenControllerPostAndGetKlantById()
-    //    {
-    //        // Arrange
-    //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+        //    [Fact]
+        //    public void KlantenControllerPostAndGetThePostedKlant()
+        //    {
+        //        // Arrange
+        //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
 
-    //        // Act
-    //        var klant = GenereerKlant();
-    //        klantController.Post(klant);
-    //        var found = klantController.Get(0);
-    //        var notFound = klantController.Get(1);
+        //        // Act
+        //        var klant = GenereerKlant();
+        //        klantController.Post(klant);
+        //        var result = klantController.Get();
 
-    //        // Assert
-    //        var okObject = Assert.IsType<OkObjectResult>(found);
-    //        var responseKlant = Assert.IsType<Klant>(okObject.Value);
-    //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
+        //        // Assert
+        //        var okObject = Assert.IsType<OkObjectResult>(result);
+        //        var responseKlanten = Assert.IsType<List<Klant>>(okObject.Value);
+        //        var responseKlant = responseKlanten.First();
+        //        Assert.Single(responseKlanten);
+        //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
+        //    }
 
-    //        var notFoundObject = Assert.IsType<NotFoundObjectResult>(notFound);
-    //        Assert.Contains("De gegeven ID is niet gevonden", (string) notFoundObject.Value);
-    //    }
+        //    [Fact]
+        //    public void KlantenControllerPostAndGetKlantById()
+        //    {
+        //        // Arrange
+        //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
 
-    //    [Fact]
-    //    public void KlantenControllerPostAndDelete()
-    //    {
-    //        // Arrange
-    //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+        //        // Act
+        //        var klant = GenereerKlant();
+        //        klantController.Post(klant);
+        //        var found = klantController.Get(0);
+        //        var notFound = klantController.Get(1);
 
-    //        // Act
-    //        var klantA = GenereerKlant(0);
-    //        var klantB = GenereerKlant(1);
-    //        klantController.Post(klantA);
-    //        klantController.Post(klantB);
-    //        klantController.Delete(0);
-    //        var result = klantController.Get();
+        //        // Assert
+        //        var okObject = Assert.IsType<OkObjectResult>(found);
+        //        var responseKlant = Assert.IsType<Klant>(okObject.Value);
+        //        Assert.Equal(klant.LoginNaam, responseKlant.LoginNaam);
 
-    //        // Assert
-    //        var okObject = Assert.IsType<OkObjectResult>(result);
-    //        var responseKlanten = Assert.IsType<List<Klant>>(okObject.Value);
-    //        var responseKlant = responseKlanten.First();
-    //        Assert.Single(responseKlanten);
-    //        Assert.Equal(klantB.KlantNummer, responseKlant.KlantNummer);
-    //    }
+        //        var notFoundObject = Assert.IsType<NotFoundObjectResult>(notFound);
+        //        Assert.Contains("De gegeven ID is niet gevonden", (string) notFoundObject.Value);
+        //    }
+
+        //    [Fact]
+        //    public void KlantenControllerPostAndDelete()
+        //    {
+        //        // Arrange
+        //        var klantController = new MasterclassApiTest.Controllers.v2.KlantenController();
+
+        //        // Act
+        //        var klantA = GenereerKlant(0);
+        //        var klantB = GenereerKlant(1);
+        //        klantController.Post(klantA);
+        //        klantController.Post(klantB);
+        //        klantController.Delete(0);
+        //        var result = klantController.Get();
+
+        //        // Assert
+        //        var okObject = Assert.IsType<OkObjectResult>(result);
+        //        var responseKlanten = Assert.IsType<List<Klant>>(okObject.Value);
+        //        var responseKlant = responseKlanten.First();
+        //        Assert.Single(responseKlanten);
+        //        Assert.Equal(klantB.KlantNummer, responseKlant.KlantNummer);
+        //    }
 
         //private Klant GenereerKlant(int id = 0)
         //{

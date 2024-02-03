@@ -12,25 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MasterclassApiUnitTests
 {
-    public class KlantTests
+    public class KlantenRepositoryTests
     {
-        [Fact]
-        public async void Get_Klanten_Returns_List_Of_Klanten_When_Called()
-        {
-            // Arrange
-            var fixture = new KlantenControllerFixture();
-
-            // Act
-            var pageParams = fixture.PageParams;
-            var result = await fixture.Sut.Get(pageParams);
-            var list = (result as OkObjectResult).Value;
-
-            // Assert
-            result.Should().NotBeNull();
-            result.Should().BeOfType<OkObjectResult>();
-            list.Should().BeOfType<List<GetKlantDTO>>();
-        }
-
         [Fact]
         public async void CreateKlant_Should_Store_A_Klant_In_The_DB()
         {
