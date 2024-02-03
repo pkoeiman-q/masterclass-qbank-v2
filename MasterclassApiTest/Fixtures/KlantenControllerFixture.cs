@@ -31,8 +31,7 @@ namespace MasterclassApiTest.Fixtures
         public KlantenControllerFixture()
         {
             // Dependencies of the KlantenController
-            var _unitOfWork = A.Fake<IUnitOfWork>();
-            var _klantenService = A.Fake<IKlantenService>();
+            var unitOfWork = A.Fake<IUnitOfWork>();
 
             PageParams = new KlantPageParameters
             {
@@ -40,8 +39,10 @@ namespace MasterclassApiTest.Fixtures
                 PageSize = 10,
             };
 
-            A.CallTo(() => _unitOfWork.Klanten.GetAllKlanten(PageParams)).Returns(KlantList());
-            Sut = new KlantenController(_unitOfWork);
+            var klanten = KlantList();
+            A.CallTo(() => unitOfWork.Klanten.GetAllKlanten(PageParams))
+                .Returns(klanten);
+            Sut = new KlantenController(unitOfWork);
         }
     }
 }
