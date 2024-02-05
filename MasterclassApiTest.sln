@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassApiIntegrationTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassMVC", "MasterclassMVC\MasterclassMVC.csproj", "{D3BC3606-FEF9-4037-9757-11D4710174F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassSpecflow", "MasterclassSpecflow\MasterclassSpecflow.csproj", "{3B64CC50-7899-4498-9264-6A3A23218ED7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3BC3606-FEF9-4037-9757-11D4710174F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B64CC50-7899-4498-9264-6A3A23218ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B64CC50-7899-4498-9264-6A3A23218ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B64CC50-7899-4498-9264-6A3A23218ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B64CC50-7899-4498-9264-6A3A23218ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
