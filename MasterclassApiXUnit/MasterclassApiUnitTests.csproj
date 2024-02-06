@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,15 @@
     <IsTestProject>true</IsTestProject>
 	<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Builders\**" />
+    <Compile Remove="Fixtures\**" />
+    <EmbeddedResource Remove="Builders\**" />
+    <EmbeddedResource Remove="Fixtures\**" />
+    <None Remove="Builders\**" />
+    <None Remove="Fixtures\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.18.1" />
@@ -30,11 +39,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MasterclassApiTest\MasterclassApiTest.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Fixtures\" />
-    <Folder Include="Builders\" />
   </ItemGroup>
 
 </Project>
