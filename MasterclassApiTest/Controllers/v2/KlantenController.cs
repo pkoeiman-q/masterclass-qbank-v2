@@ -3,6 +3,7 @@ using MasterclassApiTest.Entities;
 using MasterclassApiTest.Exceptions;
 using MasterclassApiTest.Models;
 using MasterclassApiTest.Pagination;
+using MasterclassApiTest.RabbitMQ;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -56,6 +57,10 @@ namespace MasterclassApiTest.Controllers.v2
             if (klant == null) return StatusCode(500, "Iets is misgegaan tijdens het aanmaken van de klant.");
 
             await _unitOfWork.Complete();
+
+            var prod = new RbMessageProducer();
+            prod.ProduceMessage($"Created a new klant with displayname '{input.DisplayNaam}'");
+
             return Ok(klant);
         }
 
@@ -68,6 +73,10 @@ namespace MasterclassApiTest.Controllers.v2
             if (klant == null) throw new KlantNotFoundException(id);
 
             await _unitOfWork.Complete();
+
+            var prod = new RbMessageProducer();
+            prod.ProduceMessage($"Updated data for klant '{input.DisplayNaam}' (ID {id})");
+
             return Ok(klant);
         }
 
