@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Send", "Send\Send.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receive", "Receive\Receive.csproj", "{2F78FA9B-27A1-4D27-B276-D71942877F82}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewTask", "NewTask\NewTask.csproj", "{9DAA033D-C3DD-46E9-900F-F4481AB609D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "Worker\Worker.csproj", "{96633CB4-D8B1-463B-B032-50090150B614}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{2F78FA9B-27A1-4D27-B276-D71942877F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F78FA9B-27A1-4D27-B276-D71942877F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F78FA9B-27A1-4D27-B276-D71942877F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DAA033D-C3DD-46E9-900F-F4481AB609D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DAA033D-C3DD-46E9-900F-F4481AB609D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DAA033D-C3DD-46E9-900F-F4481AB609D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DAA033D-C3DD-46E9-900F-F4481AB609D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96633CB4-D8B1-463B-B032-50090150B614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96633CB4-D8B1-463B-B032-50090150B614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96633CB4-D8B1-463B-B032-50090150B614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96633CB4-D8B1-463B-B032-50090150B614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
