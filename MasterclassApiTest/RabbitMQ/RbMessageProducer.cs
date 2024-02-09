@@ -11,6 +11,8 @@ namespace MasterclassApiTest.RabbitMQ
 
         public void ProduceMessage(string message = "Hello, world!")
         {
+            // Info about using statements
+            // https://stackoverflow.com/questions/17357258/does-using-statement-always-dispose-the-object
             using IConnection _connection = _factory.CreateConnection();
             using IModel _channel = _connection.CreateModel();
 
