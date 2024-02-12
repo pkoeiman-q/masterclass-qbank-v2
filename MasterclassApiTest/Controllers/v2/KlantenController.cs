@@ -16,7 +16,6 @@ namespace MasterclassApiTest.Controllers.v2
     [Route("api/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
-    [Authorize]
     public class KlantenController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

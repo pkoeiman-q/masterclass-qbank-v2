@@ -16,7 +16,7 @@ namespace MasterclassApiTest.RabbitMQ
             using IConnection _connection = _factory.CreateConnection();
             using IModel _channel = _connection.CreateModel();
 
-            string routingKey = "test";
+            string routingKey = "klantCreated";
             string exchangeName = "topic_logs";
 
             _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Topic);
