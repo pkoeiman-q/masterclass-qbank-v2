@@ -6,67 +6,97 @@
 
 @model MasterclassApiTest.Models.GetKlantDTO;
 
-<h1 align="center">Klant '@Model.Voorletters @Model.Achternaam' bijwerken.</h1>
 <br />
 <form method="post" action="update">
-    <h3 align="center">Accountgegevens</h3>
-    <div class="form-group">
-        <input type="hidden" class="form-control" value="@Model.Id" asp-for="Id">
-    </div>
-    <div class="form-group">
-        <label for="">Klant e-mailadres</label>
-        <input type="email" class="form-control" asp-for="Email">
-    </div>
-    <br />
+    <div class="card">
+        <div class="card-header">
+            <b>Klant '@Model.Voorletters @Model.Achternaam' bijwerken.</b>
+        </div>
+        <div class="card-body">
+            <h4>Accountgegevens</h4>
+            <div class="row mb-3">
+                <input type="hidden" class="form-control" value="@Model.Id" asp-for="Id">
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Klant e-mailadres</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" asp-for="Email">
+                </div>
+            </div>
+            <br />
 
-    <h3 align="center">Persoonlijke gegevens</h3>
-    <div class="form-group">
-        <label for="">Voorletters</label>
-        <input type="text" class="form-control" asp-for="Voorletters">
-    </div>
-    <div class="form-group">
-        <label for="">Achternaam</label>
-        <input type="text" class="form-control" asp-for="Achternaam">
-    </div>
-    Geslacht
-    <select asp-for="Geslacht" class="form-select" aria-label="Default select example">
-        <option selected>Kies een optie</option>
-        <option value="1">Man</option>
-        <option value="2">Vrouw</option>
-        <option value="3">Anders</option>
-    </select>
-    <div class="form-group">
-        <label for="">Geboortedatum</label>
-        <input type="date" class="form-control" asp-for="GeboorteDatum">
-    </div>
-    <div class="form-group">
-        <label for="">Overlijdensdatum</label>
-        <input type="date" class="form-control" asp-for="OverlijdensDatum">
-    </div>
-    <div class="form-group">
-        <label for="">Telefoon nr.</label>
-        <input type="text" class="form-control" asp-for="TelefoonNummer">
-    </div>
-    <br />
+            <h4>Persoonlijke gegevens</h4>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Voorletters</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Voorletters">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Achternaam</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Achternaam">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Geslacht</label>
+                <div class="col-sm-10">
+                    <select asp-for="Geslacht" class="form-select" aria-label="Default select example">
+                        <option selected>Kies een optie</option>
+                        <option value="1">Man</option>
+                        <option value="2">Vrouw</option>
+                        <option value="3">Anders</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Geboortedatum</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" asp-for="GeboorteDatum">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Overlijdensdatum</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" asp-for="OverlijdensDatum">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Telefoon nr.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="TelefoonNummer">
+                </div>
+            </div>
+            <br />
 
-    <h3 align="center">Woon gegevens</h3>
-    <div class="form-group">
-        <label for="">Straat</label>
-        <input type="text" class="form-control" asp-for="Adres.Straat">
+            <h4>Woon gegevens</h4>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Straat</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Adres.Straat">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Woonplaats</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Adres.Woonplaats">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Postcode</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" asp-for="Adres.Postcode">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="">Huisnummer</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" asp-for="Adres.Huisnummer">
+                </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="">Woonplaats</label>
-        <input type="text" class="form-control" asp-for="Adres.Woonplaats">
-    </div>
-    <div class="form-group">
-        <label for="">Postcode</label>
-        <input type="text" class="form-control" asp-for="Adres.Postcode">
-    </div>
-    <div class="form-group">
-        <label for="">Huisnummer</label>
-        <input type="number" class="form-control" asp-for="Adres.Huisnummer">
-    </div>
-    <br />
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    
 </form>

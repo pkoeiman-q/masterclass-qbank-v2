@@ -5,85 +5,119 @@
 }
 
 @model MasterclassApiTest.Models.CreateKlantDTO;
-<h1 align="center">Klant aanmaken</h1>
+
 <br />
-<form method="post" action="create">
-    <h3 align="center">Accountgegevens</h3>
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label for="">Klant loginnaam</label>
-        <input type="text" class="form-control" asp-for="LoginNaam">
-        <span asp-validation-for="LoginNaam" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Klant wachtwoord</label>
-        <input type="password" class="form-control" asp-for="Wachtwoord">
-        <span asp-validation-for="Wachtwoord" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Klant e-mailadres</label>
-        <input type="email" class="form-control" asp-for="Email">
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Display naam</label>
-        <input type="text" class="form-control" asp-for="DisplayNaam">
-        <span asp-validation-for="DisplayNaam" class="text-danger"></span>
-    </div>
-    <br />
+<form class="form-inline" method="post" action="create">
+    <div class="card">
+        <div class="card-header">
+            <b>Klant aanmaken</b>
+        </div>
+        <div class="card-body">
+                <h4>Accountgegevens</h4>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Klant loginnaam</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="LoginNaam">
+                    </div>
+                    <span asp-validation-for="LoginNaam" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Klant wachtwoord</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" asp-for="Wachtwoord">
+                    </div>
+                    <span asp-validation-for="Wachtwoord" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Klant e-mailadres</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" asp-for="Email">
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Display naam</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="DisplayNaam">
+                    </div>
+                    <span asp-validation-for="DisplayNaam" class="text-danger"></span>
+                </div>
+                <br />
 
-    <h3 align="center">Persoonlijke gegevens</h3>
-    <div class="form-group">
-        <label for="">Voorletters</label>
-        <input type="text" class="form-control" asp-for="Voorletters">
-        <span asp-validation-for="Voorletters" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Achternaam</label>
-        <input type="text" class="form-control" asp-for="Achternaam">
-        <span asp-validation-for="Achternaam" class="text-danger"></span>
-    </div>
-    Geslacht
-    <select asp-for="Geslacht" class="form-select" aria-label="Default select example">
-        <option selected>Kies een optie</option>
-        <option value="1">Man</option>
-        <option value="2">Vrouw</option>
-        <option value="3">Anders</option>
-    </select>
-    <div class="form-group">
-        <label for="">Geboortedatum</label>
-        <input type="date" class="form-control" asp-for="GeboorteDatum">
-        <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Telefoon nr.</label>
-        <input type="text" class="form-control" asp-for="TelefoonNummer">
-        <span asp-validation-for="TelefoonNummer" class="text-danger"></span>
-    </div>
-    <br />
+                <h4>Persoonlijke gegevens</h4>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Voorletters</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Voorletters">
+                    </div>
+                    <span asp-validation-for="Voorletters" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Achternaam</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Achternaam">
+                    </div>
+                    <span asp-validation-for="Achternaam" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Geslacht</label>
+                    <div class="col-sm-10">
+                        <select asp-for="Geslacht" class="form-select" aria-label="Default select example">
+                            <option selected>Kies een optie</option>
+                            <option value="1">Man</option>
+                            <option value="2">Vrouw</option>
+                            <option value="3">Anders</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Geboortedatum</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" asp-for="GeboorteDatum">
+                    </div>
+                    <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Telefoon nr.</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="TelefoonNummer">
+                    </div>
+                    <span asp-validation-for="TelefoonNummer" class="text-danger"></span>
+                </div>
+                <br />
 
-    <h3 align="center">Woon gegevens</h3>
-    <div class="form-group">
-        <label for="">Straat</label>
-        <input type="text" class="form-control" asp-for="Adres.Straat">
-        <span asp-validation-for="Adres.Straat" class="text-danger"></span>
+                <h4>Woon gegevens</h4>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Straat</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Adres.Straat">
+                    </div>
+                    <span asp-validation-for="Adres.Straat" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Woonplaats</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Adres.Woonplaats">
+                    </div>
+                    <span asp-validation-for="Adres.Woonplaats" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Postcode</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="Adres.Postcode">
+                    </div>
+                    <span asp-validation-for="Adres.Postcode" class="text-danger"></span>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="">Huisnummer</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" asp-for="Adres.Huisnummer">
+                    </div>
+                    <span asp-validation-for="Adres.Huisnummer" class="text-danger"></span>
+                </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="">Woonplaats</label>
-        <input type="text" class="form-control" asp-for="Adres.Woonplaats">
-        <span asp-validation-for="Adres.Woonplaats" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Postcode</label>
-        <input type="text" class="form-control" asp-for="Adres.Postcode">
-        <span asp-validation-for="Adres.Postcode" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="">Huisnummer</label>
-        <input type="number" class="form-control" asp-for="Adres.Huisnummer">
-        <span asp-validation-for="Adres.Huisnummer" class="text-danger"></span>
-    </div>
-    <br />
-
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
