@@ -18,28 +18,28 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Klant loginnaam</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="LoginNaam">
+                        <input type="text" class="form-control" asp-for="LoginNaam" required>
                     </div>
                     <span asp-validation-for="LoginNaam" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Klant wachtwoord</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" asp-for="Wachtwoord">
+                        <input type="password" class="form-control" asp-for="Wachtwoord" required>
                     </div>
                     <span asp-validation-for="Wachtwoord" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Klant e-mailadres</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" asp-for="Email">
+                        <input type="email" class="form-control" asp-for="Email" required>
                     </div>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Display naam</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="DisplayNaam">
+                        <input type="text" class="form-control" asp-for="DisplayNaam" required>
                     </div>
                     <span asp-validation-for="DisplayNaam" class="text-danger"></span>
                 </div>
@@ -49,14 +49,14 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Voorletters</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Voorletters">
+                        <input type="text" class="form-control" asp-for="Voorletters" required>
                     </div>
                     <span asp-validation-for="Voorletters" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Achternaam</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Achternaam">
+                        <input type="text" class="form-control" asp-for="Achternaam" required>
                     </div>
                     <span asp-validation-for="Achternaam" class="text-danger"></span>
                 </div>
@@ -74,14 +74,14 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Geboortedatum</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" asp-for="GeboorteDatum">
+                        <input type="date" class="form-control" asp-for="GeboorteDatum" required>
                     </div>
                     <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Telefoon nr.</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="TelefoonNummer">
+                        <input type="text" class="form-control" asp-for="TelefoonNummer" required>
                     </div>
                     <span asp-validation-for="TelefoonNummer" class="text-danger"></span>
                 </div>
@@ -91,28 +91,28 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Straat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Adres.Straat">
+                        <input type="text" class="form-control" asp-for="Adres.Straat" required>
                     </div>
                     <span asp-validation-for="Adres.Straat" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Woonplaats</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Adres.Woonplaats">
+                        <input type="text" class="form-control" asp-for="Adres.Woonplaats" required>
                     </div>
                     <span asp-validation-for="Adres.Woonplaats" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Postcode</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Adres.Postcode">
+                        <input type="text" class="form-control" asp-for="Adres.Postcode" required>
                     </div>
                     <span asp-validation-for="Adres.Postcode" class="text-danger"></span>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="">Huisnummer</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" asp-for="Adres.Huisnummer">
+                        <input type="number" class="form-control" asp-for="Adres.Huisnummer" required>
                     </div>
                     <span asp-validation-for="Adres.Huisnummer" class="text-danger"></span>
                 </div>
