@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceiveLogsTopic", "Receive
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmitLogsTopic", "EmitLogsTopic\EmitLogsTopic.csproj", "{CCDBE1C2-3DE1-45CB-8075-0A4E2FE6E33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterclassRabbitMQ", "MasterclassRabbitMQ\MasterclassRabbitMQ.csproj", "{389BCE72-D9FF-4722-ABD6-E39A9C979409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterclassRabbitMQ", "MasterclassRabbitMQ\MasterclassRabbitMQ.csproj", "{389BCE72-D9FF-4722-ABD6-E39A9C979409}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "MasterclassAngular", "MasterclassAngular\MasterclassAngular.esproj", "{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,12 @@ Global
 		{389BCE72-D9FF-4722-ABD6-E39A9C979409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{389BCE72-D9FF-4722-ABD6-E39A9C979409}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{389BCE72-D9FF-4722-ABD6-E39A9C979409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9C4FB7-9482-470B-B879-74F70BC3EB0D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
