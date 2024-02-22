@@ -2,7 +2,8 @@
 
 <div class="container">
   <main role="main" class="pb-3">
-    <app-home></app-home>
+    <app-home *ngIf="hasRoute('/')"></app-home>
+    <app-klanten *ngIf="hasRoute('/klanten')"></app-klanten>
   </main>
 </div>
 
